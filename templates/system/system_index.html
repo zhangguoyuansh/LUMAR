@@ -1,0 +1,84 @@
+{% extends "base-left.html" %}
+{% load staticfiles %}
+
+{% block title %}LUMAR{% endblock %}
+
+{% block content %}
+
+
+    <section class="content-header">
+      <h1>
+        System
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> LUMAR Enterprise</a></li>
+        <li><a href="{% url 'system' %}">System</a></li>
+      </ol>
+    </section>
+
+    <div class="pad margin no-print">
+      <div class="callout callout-info" style="margin-bottom: 0!important;">
+        <h4><i class="fa  fa-info-circle"></i> Prompt:</h4>
+        系统模块用于修改系统基本配置，包括：组织架构、用户管理、权限管理[菜单管理、角色管理]、系统参数设置等.
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="invoice">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> LUMAR, Inc.
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+          <b>Northern Land Council</b>
+          <p>
+            <strong></strong><br>
+            The Northern Land Council (NLC) <br>
+            is an independent statutory <br>
+            authority of the Commonwealth<br>
+            <strong></strong><br>
+          </p>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <b>Purpose</b>
+          <p>
+            <strong></strong><br>
+            ensure that social, economic <br>
+            and cultural benefits flow to <br>
+            Aboriginal people from these <br>
+            developments <br>
+            <strong></strong><br>
+
+          </p>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <b> Contact Us</b><br>
+          <br>
+          <b>Mobile:</b> <br>
+          <b>Email:</b> <br>
+          <b>Address:</b>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript">
+	$(function() {
+		$('#index').addClass('active');
+	});
+  </script>
+{% endblock %}
