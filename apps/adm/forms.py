@@ -47,8 +47,8 @@ class CustomerCreateForm(forms.ModelForm):
         model = Customer
         fields = ['unit', 'address', 'name', 'phone', 'status', 'belongs_to', 'desc']
         error_messages = {
-            "unit": {"required": "请填写客户单位"},
-            "address": {"required": "请填写客户单位地址"},
+            "unit": {"required": "请填写Traditional Owner"},
+            "address": {"required": "请填写Traditional Owner地址"},
             "name": {"required": "请填写客户联系人"},
             "phone": {"required": "请填写客户联系电话"}
         }
@@ -57,7 +57,7 @@ class CustomerCreateForm(forms.ModelForm):
         cleaned_data = super(CustomerCreateForm, self).clean()
         unit = cleaned_data.get("unit")
         if Customer.objects.filter(unit=unit).count():
-            raise forms.ValidationError('客户单位："{}"已经存在'.format(unit))
+            raise forms.ValidationError('Traditional Owner："{}"已经存在'.format(unit))
 
 
 class CustomerUpdateForm(forms.ModelForm):
@@ -65,8 +65,8 @@ class CustomerUpdateForm(forms.ModelForm):
         model = Customer
         fields = ['unit', 'address', 'name', 'phone', 'status', 'belongs_to', 'desc']
         error_messages = {
-            "unit": {"required": "请填写客户单位"},
-            "address": {"required": "请填写客户单位地址"},
+            "unit": {"required": "请填写Traditional Owner"},
+            "address": {"required": "请填写Traditional Owner地址"},
             "name": {"required": "请填写客户联系人"},
             "phone": {"required": "请填写客户联系电话"}
         }

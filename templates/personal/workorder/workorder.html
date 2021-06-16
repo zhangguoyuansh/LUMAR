@@ -75,7 +75,7 @@
                         <th>ID</th>
                         <th>工单号</th>
                         <th>标题</th>
-                        <th class="info">客户单位</th>
+                        <th class="info">Traditional Owner</th>
                         <th>工单类型</th>
                         <th>工单状态</th>
                         <th>安排时间</th>
@@ -325,11 +325,11 @@ function doDelete(id){
                 cache: false,
                 success : function(msg) {
                     if (msg.result){
-                        layer.alert('删除成功',{icon: 1});
+                        layer.alert('Successfully deleted',{icon: 1});
                         oDataTable.ajax.reload();
                     }else{
                         //alert(msg.message);
-                        layer.alert('删除失败，当前状态不能删除', {icon: 4});
+                        layer.alert('Delete failed，当前状态不能删除', {icon: 4});
                     }
                     return ;
                 }

@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('buyDate', models.DateField(verbose_name='购买日期')),
                 ('warrantyDate', models.DateField(verbose_name='到保日期')),
                 ('status', models.CharField(choices=[('0', '闲置'), ('1', '在用'), ('2', '维修'), ('3', '报废'), ('4', '售出')], default='1', max_length=20, verbose_name='资产状态')),
-                ('customer', models.CharField(blank=True, default='', max_length=80, null=True, verbose_name='客户信息')),
+                ('customer', models.CharField(blank=True, default='', max_length=80, null=True, verbose_name='Traditional Owner')),
                 ('operator', models.CharField(default='', max_length=20, verbose_name='入库人')),
                 ('add_time', models.DateTimeField(auto_now_add=True, verbose_name='添加时间')),
                 ('desc', models.TextField(blank=True, default='', null=True, verbose_name='备注信息')),
@@ -68,7 +68,7 @@ class Migration(migrations.Migration):
             name='Customer',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('unit', models.CharField(max_length=50, verbose_name='客户单位')),
+                ('unit', models.CharField(max_length=50, verbose_name='Traditional Owner')),
                 ('address', models.CharField(max_length=100, verbose_name='地址')),
                 ('name', models.CharField(max_length=20, verbose_name='联系人')),
                 ('phone', models.CharField(max_length=30, verbose_name='联系电话')),

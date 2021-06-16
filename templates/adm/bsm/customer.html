@@ -47,7 +47,7 @@
                     <tr valign="middle">
                         <th><input type="checkbox" id="checkAll"></th>
                         <th>ID</th>
-                        <th>客户单位</th>
+                        <th>Traditional Owner</th>
                         <th>通信地址</th>
                         <th>联系人</th>
                         <th>联系电话</th>
@@ -266,11 +266,11 @@ function doDelete(id){
                 cache: false,
                 success : function(msg) {
                     if (msg.result){
-                        layer.alert('删除成功',{icon: 1});
+                        layer.alert('Successfully deleted',{icon: 1});
                         oDataTable.ajax.reload();
                     }else{
                         //alert(msg.message);
-                        layer.alert('删除失败', {icon: 2});
+                        layer.alert('Delete failed', {icon: 2});
                     }
                     return ;
                 }

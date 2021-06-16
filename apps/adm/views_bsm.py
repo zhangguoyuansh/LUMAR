@@ -166,7 +166,7 @@ class AssetTypeDeleteView(LoginRequiredMixin, View):
 
 class CustomerView(LoginRequiredMixin, View):
     """
-    客户信息
+    Traditional Owner
     """
     def get(self, request):
         ret = Menu.getMenuByRequestUrl(url=request.path_info)
@@ -176,7 +176,7 @@ class CustomerView(LoginRequiredMixin, View):
 
 class CustomerListView(LoginRequiredMixin, View):
     """
-    获取客户信息列表
+    获取Traditional Owner列表
     """
     def get(self, request):
         fields = ['id', 'unit', 'address', 'name', 'phone', 'status', 'belongs_to__name', 'add_time', 'desc']

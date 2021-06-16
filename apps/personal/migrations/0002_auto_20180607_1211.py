@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='workorder',
             name='customer',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='adm.Customer', verbose_name='客户信息'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='adm.Customer', verbose_name='Traditional Owner'),
         ),
         migrations.AddField(
             model_name='workorder',

@@ -34,7 +34,7 @@ class WorkOrderCreateForm(forms.ModelForm):
             "status": {"required": "请选择工单状态"},
             "do_time": {"required": "请输入工单安排时间"},
             "content": {"required": "请输入工单内容"},
-            "customer": {"required": "请选客户信息"},
+            "customer": {"required": "Please choose Traditional Owner"},
         }
 
     def clean(self):
@@ -57,7 +57,7 @@ class WorkOrderUpdateForm(forms.ModelForm):
             "status": {"required": "请选择工单状态"},
             "do_time": {"required": "请输入工单安排时间"},
             "content": {"required": "请输入工单内容"},
-            "customer": {"required": "请选客户信息"},
+            "customer": {"required": "Please choose Traditional Owner"},
         }
 
     def clean(self):

@@ -28,16 +28,16 @@ class Supplier(models.Model):
 
 class Customer(models.Model):
     """
-    客户信息
+    Traditional Owner
     """
-    unit = models.CharField(max_length=50, verbose_name="客户单位")
-    address = models.CharField(max_length=100, verbose_name="地址")
-    name = models.CharField(max_length=20, verbose_name="联系人")
-    phone = models.CharField(max_length=30, verbose_name="联系电话")
+    unit = models.CharField(max_length=50, verbose_name="Traditional Owner")
+    address = models.CharField(max_length=100, verbose_name="Address")
+    name = models.CharField(max_length=20, verbose_name="name")
+    phone = models.CharField(max_length=30, verbose_name="phone")
     belongs_to = models.ForeignKey(User, blank=True, null=True , on_delete=models.SET_NULL, verbose_name="责任人")
-    status = models.BooleanField(default=True, verbose_name="状态")
-    desc = models.TextField(blank=True, null=True, verbose_name="备注")
-    add_time = models.DateTimeField(auto_now_add=True, verbose_name="添加时间")
+    status = models.BooleanField(default=True, verbose_name="status")
+    desc = models.TextField(blank=True, null=True, verbose_name="Note")
+    add_time = models.DateTimeField(auto_now_add=True, verbose_name="add time")
 
     class Meta:
         verbose_name = "客户管理"
@@ -83,7 +83,7 @@ class Asset(models.Model):
     buyDate = models.DateField(verbose_name="购买日期")
     warrantyDate = models.DateField(verbose_name="到保日期")
     status = models.CharField(choices=asset_status, max_length=20, default="1", verbose_name="资产状态")
-    customer = models.CharField(max_length=80, default="", blank=True, null=True, verbose_name="客户信息")
+    customer = models.CharField(max_length=80, default="", blank=True, null=True, verbose_name="add_time")
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="使用人")
     operator = models.CharField(max_length=20, default="", verbose_name="入库人")
     add_time = models.DateTimeField(auto_now_add=True, verbose_name="添加时间")
@@ -156,7 +156,7 @@ class Equipment(models.Model):
     warranty_date = models.DateField(verbose_name="质保日期")
     accounting = models.BooleanField(default=False, verbose_name="费用核算状态")
     config_desc = models.TextField(blank=True, null=True, verbose_name="配置说明")
-    customer = models.ForeignKey(Customer, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="客户信息")
+    customer = models.ForeignKey(Customer, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Traditional Owner")
     supplier = models.ForeignKey(Supplier, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="分销商")
     service_info = models.ManyToManyField(ServiceInfo, blank=True, verbose_name="服务记录")
 

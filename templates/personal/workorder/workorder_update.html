@@ -52,7 +52,7 @@
                 <div class="col-sm-3">
                     <input type="text" class="form-control pull-right form_datetime" name="do_time" value="{{ work_order.do_time |date:'Y-m-d H:m:s'}}"/>
                 </div>
-                <label class="col-sm-2 control-label">客户单位</label>
+                <label class="col-sm-2 control-label">Traditional Owner</label>
                 <div class="col-sm-3">
                   <select class="form-control select2" style="width:100%;" name="customer">
                   <option value="{{ work_order.customer_id }}">{{ work_order.customer.unit }}</option>

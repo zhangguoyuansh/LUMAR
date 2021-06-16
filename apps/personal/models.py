@@ -18,7 +18,7 @@ class WorkOrder(models.Model):
     add_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     content = models.CharField(max_length=300, verbose_name='工单内容')
     file_content = models.FileField(upload_to='file/%Y/%m', blank=True, null=True, verbose_name='项目资料')
-    customer = models.ForeignKey(Customer, verbose_name='客户信息',on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, verbose_name='Traditional Owner',on_delete=models.CASCADE)
     proposer = models.ForeignKey(User, related_name='proposer', blank=True, null=True, on_delete=models.SET_NULL, verbose_name='申请人')
     approver = models.ForeignKey(User, related_name='approver', blank=True, null=True, on_delete=models.SET_NULL, verbose_name='审批人')
     receiver = models.ForeignKey(User, related_name='receiver', blank=True, null=True, on_delete=models.SET_NULL, verbose_name='接单人')
