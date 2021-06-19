@@ -83,7 +83,7 @@ class UserCreateForm(forms.ModelForm):
             raise forms.ValidationError('mobile：{} already exists'.format(mobile))
 
         # 手机号码合法性验证
-        REGEX_MOBILE = "^(?:\+?61|\(?0)[2378]\)?(?:[ -]?[0-9]){8}$"
+        REGEX_MOBILE = "^(\+?61|0)4\d{8}$"
         if not re.match(REGEX_MOBILE, mobile):
             raise forms.ValidationError("Illegal mobile phone number")
 

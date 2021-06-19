@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='WorkOrder',
+            name='ExplorationApplication',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('number', models.CharField(max_length=10, verbose_name='工单号')),
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='WorkOrderRecord',
+            name='ApplicationRecord',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('record_type', models.CharField(choices=[('0', '退回'), ('1', '派发'), ('2', '执行'), ('3', '确认')], max_length=10, verbose_name='记录类型')),

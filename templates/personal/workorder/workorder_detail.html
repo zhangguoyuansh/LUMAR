@@ -64,7 +64,7 @@
           <!-- /. box -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">申请人信息</h3>
+              <h3 class="box-title">Proponent Info</h3>
 
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -298,7 +298,7 @@
   <script src="{% static 'js/plugins/layer/layer.js' %}"></script>
   <script type="text/javascript">
 	$(function() {
-	    $('#PERSONAL-WORKORDER').addClass('active');
+	    $('#PERSONAL-APPLICATION').addClass('active');
 	    $('#{{ menu.code }}').addClass('active');
 
 	});
@@ -398,7 +398,7 @@ function doWorkorderUpdate(id){
 		shadeClose : false,
     	maxmin : true,
 		area : [ '800px', '500px' ],
-		content : [ "{% url 'personal-workorder-update' %}"+'?id='+id],
+		content : [ "{% url 'personal-application-update' %}"+'?id='+id],
 		end : function() {
 			//oDataTable.ajax.reload();
             window.location.reload();

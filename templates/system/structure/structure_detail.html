@@ -13,26 +13,40 @@
 		<div class="box-body">
           <fieldset>
             <legend>
-              <h4>组织架构信息</h4>
+              <h4>Company information</h4>
             </legend>
             <div class="form-group has-feedback">
-                <label class="col-sm-2 control-label">名称</label>
+                <label class="col-sm-2 control-label">Company Nme</label>
                 <div class="col-sm-3">
                     <input class="form-control" name="title" type="text" value="{{ structure.title }}"/>
                 </div>
-                <label class="col-sm-2 control-label">类别</label>
+                <label class="col-sm-2 control-label">Category</label>
                 <div class="col-sm-3">
                   <select class="form-control" name="type">
                     <option value={{ structure.type }}> {{ structure.get_type_display|default:"--类别--" }} </option>
-                    <option value="firm">公司</option>
-                    <option value="department">部门</option>
+                    <option value="firm">External</option>
+                    <option value="department">Intra-company</option>
                   </select>
                 </div>
 
             </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-3">
+                    <input class="form-control" name="address" type="text" value="{{ structure.address }}"/>
+                </div>
+                <label class="col-sm-2 control-label">Telephone</label>
+                <div class="col-sm-3">
+                    <input class="form-control" name="address" type="text" value="{{ structure.telephone }}"/>
+                </div>
+            </div>
 
             <div class="form-group has-feedback">
-                <label class="col-sm-2 control-label">所属</label>
+                <label class="col-sm-2 control-label">ABN</label>
+                <div class="col-sm-3">
+                    <input class="form-control" name="address" type="text" value="{{ structure.abn }}"/>
+                </div>
+                <label class="col-sm-2 control-label">Belong</label>
                 <div class="col-sm-3">
                   <select class="form-control" name="parent">
                     <option value={{ structure.parent_id|default_if_none:"" }}> {{ structure.parent.title|default:"" }} </option>
@@ -43,13 +57,14 @@
                   </select>
                 </div>
             </div>
+
           </fieldset>
 
 		</div>
 		<div class="box-footer ">
 			<div class="row span7 text-center ">
-              <button type="button" id="btnCancel" class="btn btn-default margin-right " >重置</button>
-              <button type="button" id="btnSave" class="btn btn-info margin-right " >保存</button>
+              <button type="button" id="btnCancel" class="btn btn-default margin-right " >Reset</button>
+              <button type="button" id="btnSave" class="btn btn-info margin-right " >Save</button>
 			</div>
 		</div>
 

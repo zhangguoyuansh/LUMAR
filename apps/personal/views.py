@@ -15,7 +15,7 @@ from rbac.models import Menu
 from system.models import SystemSetup
 from .forms import ImageUploadForm, UserUpdateForm
 from users.forms import AdminPasswdChangeForm
-from .models import WorkOrder
+from .models import ExplorationApplication
 from rbac.models import Role
 
 from utils.toolkit import get_month_work_order_count, get_year_work_order_count
@@ -36,7 +36,7 @@ class PersonalView(LoginRequiredMixin, View):
         end_date = start_date + timedelta(days=days_in_month)
         # (('0', '工单已退回'), ('1', '新建-保存'), ('2', '提交-等待审批'), ('3', '已审批-等待执行'), ('4', '已执行-等待确认'), ('5', '工单已完成'))
         # 当月个人工单状态统计
-        work_order = WorkOrder.objects.filter(Q(add_time__range=(start_date, end_date)),
+        work_order = ExplorationApplication.objects.filter(Q(add_time__range=(start_date, end_date)),
                                               Q(proposer_id=request.user.id) |
                                               Q(receiver_id=request.user.id) |
                                               Q(approver_id=request.user.id)

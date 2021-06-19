@@ -102,7 +102,7 @@
 		var data = $("#addForm").serialize();
 		$.ajax({
 			type: $("#addForm").attr('method'),
-			url : "{% url 'personal-workorder-update' %}",
+			url : "{% url 'personal-application-update' %}",
 			data : data,
 			cache: false,
             beforeSend:function(){

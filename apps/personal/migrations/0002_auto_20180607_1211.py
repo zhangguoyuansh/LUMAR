@@ -19,32 +19,32 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='workorderrecord',
+            model_name='applicationrecord',
             name='name',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='记录人'),
         ),
         migrations.AddField(
-            model_name='workorderrecord',
+            model_name='applicationrecord',
             name='work_order',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='personal.WorkOrder', verbose_name='工单信息'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='personal.ExplorationApplication', verbose_name='工单信息'),
         ),
         migrations.AddField(
-            model_name='workorder',
+            model_name='explorationapplication',
             name='approver',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='approver', to=settings.AUTH_USER_MODEL, verbose_name='审批人'),
         ),
         migrations.AddField(
-            model_name='workorder',
+            model_name='explorationapplication',
             name='customer',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='adm.Customer', verbose_name='Traditional Owner'),
         ),
         migrations.AddField(
-            model_name='workorder',
+            model_name='explorationapplication',
             name='proposer',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='proposer', to=settings.AUTH_USER_MODEL, verbose_name='申请人'),
         ),
         migrations.AddField(
-            model_name='workorder',
+            model_name='explorationapplication',
             name='receiver',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='receiver', to=settings.AUTH_USER_MODEL, verbose_name='接单人'),
         ),

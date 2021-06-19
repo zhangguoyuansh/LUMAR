@@ -13,7 +13,7 @@
   <ol class="breadcrumb">
     <li><a href=""><i class="fa fa-dashboard"></i>LUMAR Enterprise</a></li>
     <li class="active"><a href="{% url 'personal' %}">My WorkBench</a></li>
-    <li class="active"><a href="{% url 'personal-user_info' %}">个人中心</a></li>
+    <li class="active"><a href="{% url 'personal-user_info' %}">UserInfo</a></li>
   </ol>
 </section>
     <!-- Main content -->
@@ -71,8 +71,8 @@
                 <div class="col-sm-3">
                   <select class="form-control" name="gender">
                     <option value={{ user.gender }}> {{ user.get_gender_display }} </option>
-                    <option value="male">男</option>
-                    <option value="famale">女</option>
+                    <option value="male">Male</option>
+                    <option value="famale">Famale</option>
                   </select>
                 </div>
 
@@ -103,7 +103,7 @@
                 </div>
             </div>
             <legend>
-              <h4>Employee Information</h4>
+              <h4>User Information</h4>
             </legend>
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">Joined date</label>

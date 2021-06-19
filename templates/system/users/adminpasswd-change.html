@@ -39,14 +39,14 @@
                 </div>
             </div>
               <legend>
-              <h4>密码信息</h4>
+              <h4>Password Info</h4>
             </legend>
             <div class="form-group has-feedback">
-                <label class="col-sm-2 control-label">密码</label>
+                <label class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-3">
                     <input class="form-control" name="password" type="password" value=""/>
                 </div>
-                <label class="col-sm-2 control-label">确认密码</label>
+                <label class="col-sm-2 control-label">Confirm Password</label>
                 <div class="col-sm-3">
                     <input class="form-control" name="confirm_password" type="password" value=""/>
                 </div>
@@ -55,11 +55,11 @@
               <h4>其他信息</h4>
             </legend>
             <div class="form-group has-feedback">
-                <label class="col-sm-2 control-label">创建日期</label>
+                <label class="col-sm-2 control-label">Created Data</label>
                 <div class="col-sm-3">
                     <input class="form-control" name="post" type="text" readonly="readonly" value="{{ user.date_joined }}"/>
                 </div>
-                <label class="col-sm-2 control-label">最后登录时间</label>
+                <label class="col-sm-2 control-label">Last Login</label>
                 <div class="col-sm-3">
                     <input class="form-control" name="post" type="text" readonly="readonly" value="{{ user.last_login|default_if_none:"" }}"/>
                 </div>

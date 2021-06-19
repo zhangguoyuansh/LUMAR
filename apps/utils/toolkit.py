@@ -7,7 +7,7 @@ from datetime import date, timedelta
 
 from django.core.mail import send_mail
 
-from personal.models import WorkOrder
+from personal.models import ExplorationApplication
 from gistandard.settings import EMAIL_FROM
 
 
@@ -31,7 +31,7 @@ def get_month_work_order_count(users, value=0):
             else:
                 filters['receiver_id'] = user['id']
             filters['add_time__range'] = (start_date, end_date)
-            month_work_order = WorkOrder.objects.filter(**filters).count()
+            month_work_order = ExplorationApplication.objects.filter(**filters).count()
             count.append(month_work_order)
         data = {
             'name': user['name'],
@@ -55,7 +55,7 @@ def get_year_work_order_count(users, value=0):
             filters['proposer_id'] = user['id']
         else:
             filters['receiver_id'] = user['id']
-        year_work_order = WorkOrder.objects.filter(**filters).count()
+        year_work_order = ExplorationApplication.objects.filter(**filters).count()
         data = {
             'name': user['name'],
             'count': year_work_order
@@ -85,7 +85,7 @@ class SendMessage(object):
 
     @classmethod
     def send_workorder_email(self, number):
-        work_order = WorkOrder.objects.get(number=number)
+        work_order = ExplorationApplication.objects.get(number=number)
         if work_order.status == "2":
             email_title = u"工单申请通知：{0}".format(work_order.title)
             email_body = """
@@ -105,7 +105,7 @@ class SendMessage(object):
             email = [work_order.approver.email, work_order.proposer.email]
 
         elif work_order.status == "3":
-            record = work_order.workorderrecord_set.filter(record_type="1").last()
+            record = work_order.applicationrecord_set.filter(record_type="1").last()
             email_title = "工单派发通知：{0}".format(work_order.title)
             email_body = """
             编号为：{0} 的工单已经派发，申请人：{1}， 申请时间{2}，安排时间{3}，接单人：{4}
@@ -126,7 +126,7 @@ class SendMessage(object):
             email = [work_order.approver.email, work_order.proposer.email, work_order.receiver.email]
 
         elif work_order.status == "4":
-            record = work_order.workorderrecord_set.filter(record_type="2").last()
+            record = work_order.applicationrecord_set.filter(record_type="2").last()
             email_title = "工单执行通知：{0}".format(work_order.title)
             email_body = """
             编号为：{0} 的工单已经执行，执行人：{1}
@@ -136,7 +136,7 @@ class SendMessage(object):
             email = [work_order.approver.email, work_order.proposer.email, work_order.receiver.email]
 
         elif work_order.status == "5":
-            record = work_order.workorderrecord_set.filter(record_type="3").last()
+            record = work_order.applicationrecord_set.filter(record_type="3").last()
             email_title = "工单确认通知：{0}".format(work_order.title)
             email_body = """
             编号为：{0} 的工单已经确认完成，确认人：{1}
@@ -146,7 +146,7 @@ class SendMessage(object):
             email = [work_order.approver.email, work_order.proposer.email, work_order.receiver.email]
 
         elif work_order.status == "0":
-            record = work_order.workorderrecord_set.filter(record_type="0").last()
+            record = work_order.applicationrecord_set.filter(record_type="0").last()
             email_title = "工单退回通知：{0}".format(work_order.title)
             email_body = """
             编号为：{0} 的工单已被退回，操作人：{1}

@@ -219,7 +219,7 @@
         prefix: 'form',                  // The form prefix for your django formset
         formTemplate: null,              // The jQuery selection cloned to generate new form instances
         addText: '增加行 +',          // Text for the add link
-        deleteText: '删除',            // Text for the delete link
+        deleteText: 'Delete',            // Text for the delete link
         addCssClass: 'add-row',          // CSS class applied to the add link
         deleteCssClass: 'delete-row',    // CSS class applied to the delete link
         formCssClass: 'dynamic-form',    // CSS class applied to each form in a formset

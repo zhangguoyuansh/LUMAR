@@ -4,15 +4,15 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'plugins/select2/select2.min.css' %}">
 {% endblock %}
-{% block main %} 
+{% block main %}
 <div class="box box-danger">
 	<form class="form-horizontal" id="selectUsersForm" action="" method="post">
-		{% csrf_token %} 
+		{% csrf_token %}
 		<input type="hidden" name='id' value="{{ structure.id }}" />
 		<div class="box-body">
 			<div class="row">
 				<div class="col-xs-5">
-					<label class="control-label">可选用户:</label>
+					<label class="control-label">Optional users:</label>
 					<select name="from" id="multiselect" class="form-control" size="18" multiple="multiple">
 						{% for item in un_add_users %}
 							<option value="{{ item.id }}" >{{ item.name }}({{ item.username }})</option>
@@ -27,7 +27,7 @@
 					<button type="button" id="multiselect_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
 				</div>
 				<div class="col-xs-5">
-					<label class="control-label">已绑定用户:</label>
+					<label class="control-label">Bound users:</label>
 					<select name="to" id="multiselect_to" class="form-control" size="18" multiple="multiple">
 						{% for item in added_users %}
 							<option value="{{ item.id }}" >{{ item.name }}({{ item.username }})</option>
@@ -37,14 +37,14 @@
 			</div>
             <div class="row">
                 <div class="col-xs-12 margin-top-5">
-                    <p class="text-maroon">*注意：一个用户只能隶属一个部门，如果选择的用户已存在部门，用户将会从原有部门移出</p>
+                    <p class="text-maroon">*Note: a user can only belong to one company (or department). If the selected user already has a company (or department), the user will be removed from the original company (or department)</p>
                 </div>
 			</div>
 		</div>
 		<div class="box-footer ">
 			<div class="row span7 text-center ">
-              <button type="button" id="btnCancel" class="btn btn-default margin-right " >重置</button>
-              <button type="button" id="btnSave" class="btn btn-info margin-right " >保存</button>
+              <button type="button" id="btnCancel" class="btn btn-default margin-right " >Reset</button>
+              <button type="button" id="btnSave" class="btn btn-info margin-right " >Save</button>
 			</div>
 		</div>
 	</form>
@@ -80,10 +80,10 @@ $("#btnSave").click(function(){
 			cache: false,
 			success : function(msg) {
 				if (msg.result){
-					layer.alert('操作成功',{icon:1});
+					layer.alert('Operation succeeded',{icon:1});
 				}else{
 					//alert(msg.message);
-					layer.alert('操作失败',{icon:2});
+					layer.alert('operation failed',{icon:2});
 				}
 				return ;
 			}

@@ -24,13 +24,13 @@
             <div class="box-header">
                 <div class="btn-group pull-left">
                     <button type="button" id="btnRefresh" class="btn btn-success">
-                        <i class="glyphicon glyphicon-repeat"></i>刷新
+                        <i class="glyphicon glyphicon-repeat"></i>Refresh
                     </button>
                 </div>
                 <div class="btn-group pull-left">&nbsp</div>
                 <div class="btn-group pull-left">
                     <button type="button" id="btnCreate" class="btn btn-primary">
-                        <i class="glyphicon glyphicon-plus"></i>新增
+                        <i class="glyphicon glyphicon-plus"></i>Create
                     </button>
 
                 </div>
@@ -124,9 +124,9 @@ $(function() {
 									data : "status",
                                     render : function(data, type, row, meta) {
 										if (data==true){
-											return "启用";
+											return "Enable";
 										}else{
-											return "禁用";
+											return "Disable";
 										}
 									}
 								},
@@ -142,7 +142,7 @@ $(function() {
 									bSortable : "false",
 									render : function(data, type, row, meta) {
 										var ret="";
-										var ret="<button title='详情-编辑' onclick='doUpdate("
+										var ret="<button title='Edit' onclick='doUpdate("
 										+ data + ")'><i class='glyphicon glyphicon-pencil'></i></button>";
 										 ret=ret+"<button title='删除' onclick='doDelete("
                                             + data + ")'><i class='glyphicon glyphicon-trash'></i></button>";

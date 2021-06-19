@@ -6,7 +6,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
-from .models import WorkOrder, WorkOrderRecord
+from .models import ExplorationApplication, ApplicationRecord
 
 User = get_user_model()
 
@@ -26,7 +26,7 @@ class UserUpdateForm(forms.ModelForm):
 class WorkOrderCreateForm(forms.ModelForm):
     # approver = forms.(required=True, error_messages={"required": "请选择审批人"})
     class Meta:
-        model = WorkOrder
+        model = ExplorationApplication
         fields = '__all__'
         error_messages = {
             "title": {"required": "请输入工单标题"},
@@ -43,13 +43,13 @@ class WorkOrderCreateForm(forms.ModelForm):
         number = cleaned_data.get("number")
         if not approver:
             raise forms.ValidationError("请选择工单审批人")
-        if WorkOrder.objects.filter(number=number).count():
+        if ExplorationApplication.objects.filter(number=number).count():
             raise forms.ValidationError("工单编号已存在")
 
 
 class WorkOrderUpdateForm(forms.ModelForm):
     class Meta:
-        model = WorkOrder
+        model = ExplorationApplication
         fields = '__all__'
         error_messages = {
             "title": {"required": "请输入工单标题"},
@@ -69,17 +69,17 @@ class WorkOrderUpdateForm(forms.ModelForm):
 
 class WorkOrderRecordForm(forms.ModelForm):
     class Meta:
-        model = WorkOrderRecord
+        model = ApplicationRecord
         exclude = ['file_content', ]
 
 
 class WorkOrderRecordUploadForm(forms.ModelForm):
     class Meta:
-        model = WorkOrderRecord
+        model = ApplicationRecord
         fields = ['file_content']
 
 
 class WorkOrderProjectUploadForm(forms.ModelForm):
     class Meta:
-        model = WorkOrder
+        model = ExplorationApplication
         fields = ['file_content']

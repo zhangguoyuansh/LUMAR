@@ -42,6 +42,10 @@ class Structure(models.Model):
     title = models.CharField(max_length=60, verbose_name="title")
     type = models.CharField(max_length=20, choices=type_choices, default="department", verbose_name="type")
     parent = models.ForeignKey("self", null=True, blank=True, verbose_name="parent",on_delete=models.CASCADE)
+    address = models.CharField(max_length=60, verbose_name="address")
+    telephone = models.CharField(max_length=60, verbose_name="telephone")
+    abn = models.CharField(max_length=60, verbose_name="abn")
+
 
     class Meta:
         verbose_name = "organization"

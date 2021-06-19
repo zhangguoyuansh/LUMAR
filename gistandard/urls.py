@@ -23,7 +23,7 @@ from users.views_user import LoginView, IndexView, LogoutView
 from system.views import SystemView
 from adm.views import AdmView
 from personal import views as personal_views
-from personal import views_work_order as order
+from personal import views_application as order
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -48,22 +48,22 @@ urlpatterns = [
     url(r'^personal/uploadimage', personal_views.UploadImageView.as_view(), name="personal-uploadimage"),
     url(r'^personal/passwordchange', personal_views.PasswdChangeView.as_view(), name="personal-passwordchange"),
     url(r'^personal/phonebook', personal_views.PhoneBookView.as_view(), name="personal-phonebook"),
-    url(r'^personal/workorder_Icrt/$', order.WorkOrderView.as_view(), name="personal-workorder_Icrt"),
-    url(r'^personal/workorder_Icrt/list', order.WorkOrderListView.as_view(), name="personal-workorder-list"),
-    url(r'^personal/workorder_Icrt/create', order.WorkOrderCreateView.as_view(), name="personal-workorder-create"),
-    url(r'^personal/workorder_Icrt/detail', order.WorkOrderDetailView.as_view(), name="personal-workorder-detail"),
-    url(r'^personal/workorder_Icrt/delete', order.WorkOrderDeleteView.as_view(), name="personal-workorder-delete"),
-    url(r'^personal/workorder_Icrt/update', order.WorkOrderUpdateView.as_view(), name="personal-workorder-update"),
-    url(r'^personal/workorder_app/$', order.WorkOrderView.as_view(), name="personal-workorder_app"),
-    url(r'^personal/workorder_app/send', order.WrokOrderSendView.as_view(), name="personal-workorder-send"),
-    url(r'^personal/workorder_rec/$', order.WorkOrderView.as_view(), name="personal-workorder_rec"),
-    url(r'^personal/workorder_rec/execute', order.WorkOrderExecuteView.as_view(), name="personal-workorder-execute"),
-    url(r'^personal/workorder_rec/finish', order.WorkOrderFinishView.as_view(), name="personal-workorder-finish"),
-    url(r'^personal/workorder_rec/upload', order.WorkOrderUploadView.as_view(), name="personal-workorder-upload"),
-    url(r'^personal/workorder_rec/return', order.WorkOrderReturnView.as_view(), name="personal-workorder-return"),
-    url(r'^personal/workorder_Icrt/upload', order.WorkOrderProjectUploadView.as_view(),
+    url(r'^personal/application_Icrt/$', order.ApplicationView.as_view(), name="personal-application_Icrt"),
+    url(r'^personal/application_Icrt/list', order.ApplicationListView.as_view(), name="personal-application-list"),
+    url(r'^personal/application_Icrt/create', order.ApplicationCreateView.as_view(), name="personal-application-create"),
+    url(r'^personal/application_Icrt/detail', order.ApplicationDetailView.as_view(), name="personal-application-detail"),
+    url(r'^personal/application_Icrt/delete', order.ApplicationDeleteView.as_view(), name="personal-application-delete"),
+    url(r'^personal/application_Icrt/update', order.ApplicationUpdateView.as_view(), name="personal-application-update"),
+    url(r'^personal/application_app/$', order.ApplicationView.as_view(), name="personal-application_app"),
+    url(r'^personal/application_app/send', order.ApplicationSendView.as_view(), name="personal-workorder-send"),
+    url(r'^personal/application_rec/$', order.ApplicationView.as_view(), name="personal-application_rec"),
+    url(r'^personal/application_rec/execute', order.ApplicationExecuteView.as_view(), name="personal-workorder-execute"),
+    url(r'^personal/application_rec/finish', order.ApplicationFinishView.as_view(), name="personal-workorder-finish"),
+    url(r'^personal/application_rec/upload', order.WorkOrderUploadView.as_view(), name="personal-workorder-upload"),
+    url(r'^personal/application_rec/return', order.WorkOrderReturnView.as_view(), name="personal-workorder-return"),
+    url(r'^personal/application_Icrt/upload', order.WorkOrderProjectUploadView.as_view(),
         name="personal-workorder-project-upload"),
-    url(r'^personal/workorder_all/$', order.WorkOrderView.as_view(), name="personal-workorder_all"),
+    url(r'^personal/application_all/$', order.ApplicationView.as_view(), name="personal-application_all"),
     url(r'^personal/document/$', order.WorkOrderDocumentView.as_view(), name="personal-document"),
     url(r'^personal/document/list', order.WorkOrderDocumentListView.as_view(), name="personal-document-list"),
 

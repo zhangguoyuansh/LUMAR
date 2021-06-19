@@ -35,7 +35,7 @@ class StructureListView(LoginRequiredMixin, View):
     """
 
     def get(self, request):
-        fields = ['id', 'title', 'type', 'parent__title']
+        fields = ['id', 'title', 'type', 'parent__title', 'address' ]
         ret = dict(data=list(Structure.objects.values(*fields)))
         return HttpResponse(json.dumps(ret, cls=DjangoJSONEncoder), content_type='application/json')
 
