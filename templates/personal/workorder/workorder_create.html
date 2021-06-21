@@ -64,7 +64,17 @@
                  </div>
             </div>
             <div class="form-group has-feedback">
-                <label class="col-sm-2 control-label">审批人</label>
+
+                <label class="col-sm-2 control-label">Land</label>
+                <div class="col-sm-3">
+                  <select class="form-control select2" style="width:100%;" name="land">
+                  <option value="{{ work_order.land_id }}">{{ work_order.land.equipment_model }}</option>
+                  {% for la in land %}
+                  <option value="{{ la.id}}">{{ la.equipment_model }}</option>
+                  {% endfor %}
+                 </select>
+                 </div>
+                <label class="col-sm-2 control-label">approver</label>
                 <div class="col-sm-3">
                   <select class="form-control select2" style="width:100%;" name="approver">
                   <option value="{{ work_order.approver_id }}">{{ work_order.approver.name }}</option>
@@ -85,8 +95,8 @@
 		</div>
 		<div class="box-footer ">
 			<div class="row span7 text-center ">
-              <button type="button" id="btnCancel" class="btn btn-default margin-right " >重置</button>
-              <button type="button" id="btnSave" class="btn btn-info margin-right " >保存</button>
+              <button type="button" id="btnCancel" class="btn btn-default margin-right " >Reset</button>
+              <button type="button" id="btnSave" class="btn btn-info margin-right " >Save</button>
 			</div>
 		</div>
 	</form>

@@ -54,7 +54,7 @@ $(document).on('ready', function() {
         language: "en",
         showPreview: false,
         showUpload: true,
-        allowedFileExtensions: ["zip"],
+        allowedFileExtensions: ["pdf"],
         uploadUrl: "{% url 'personal-workorder-project-upload' %}",
         uploadExtraData: {
             'csrfmiddlewaretoken': '{{ csrf_token }}',

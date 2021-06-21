@@ -6,7 +6,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
-from .models import ExplorationApplication, ApplicationRecord
+from .models import ExplorationApplication, ExplorationApplicationRecord
 
 User = get_user_model()
 
@@ -35,6 +35,7 @@ class WorkOrderCreateForm(forms.ModelForm):
             "do_time": {"required": "请输入工单安排时间"},
             "content": {"required": "请输入工单内容"},
             "customer": {"required": "Please choose Traditional Owner"},
+            "land": {"required": "Please choose land"},
         }
 
     def clean(self):
@@ -52,12 +53,13 @@ class WorkOrderUpdateForm(forms.ModelForm):
         model = ExplorationApplication
         fields = '__all__'
         error_messages = {
-            "title": {"required": "请输入工单标题"},
-            "type": {"required": "请选择工单类型"},
-            "status": {"required": "请选择工单状态"},
-            "do_time": {"required": "请输入工单安排时间"},
-            "content": {"required": "请输入工单内容"},
+            "title": {"required": "Please input exploration application title"},
+            "type": {"required": "Please choose exploration application type"},
+            "status": {"required": "Please choose exploration application status"},
+            "do_time": {"required": "Please input exploration application schedule time"},
+            "content": {"required": "Please input exploration application content"},
             "customer": {"required": "Please choose Traditional Owner"},
+            "land": {"required": "Please choose land"},
         }
 
     def clean(self):
@@ -69,13 +71,13 @@ class WorkOrderUpdateForm(forms.ModelForm):
 
 class WorkOrderRecordForm(forms.ModelForm):
     class Meta:
-        model = ApplicationRecord
+        model = ExplorationApplicationRecord
         exclude = ['file_content', ]
 
 
 class WorkOrderRecordUploadForm(forms.ModelForm):
     class Meta:
-        model = ApplicationRecord
+        model = ExplorationApplicationRecord
         fields = ['file_content']
 
 

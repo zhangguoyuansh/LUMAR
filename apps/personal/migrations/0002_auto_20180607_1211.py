@@ -19,12 +19,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='applicationrecord',
+            model_name='explorationapplicationrecord',
             name='name',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='记录人'),
         ),
         migrations.AddField(
-            model_name='applicationrecord',
+            model_name='explorationapplicationrecord',
             name='work_order',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='personal.ExplorationApplication', verbose_name='工单信息'),
         ),

@@ -11,9 +11,9 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 from utils.mixin_utils import LoginRequiredMixin
 from rbac.models import Menu
-from .models import ExplorationApplication, ApplicationRecord
+from .models import ExplorationApplication, ExplorationApplicationRecord
 from .forms import WorkOrderCreateForm, WorkOrderUpdateForm, WorkOrderRecordForm, WorkOrderRecordUploadForm, WorkOrderProjectUploadForm
-from adm.models import Customer
+from adm.models import Customer,Equipment
 from rbac.models import Role
 
 from utils.toolkit import ToolKit, SendMessage
@@ -77,6 +77,8 @@ class ApplicationCreateView(LoginRequiredMixin, View):
             filters['belongs_to_id'] = request.user.id
         customer = Customer.objects.values().filter(**filters)
         role = get_object_or_404(Role, title='审批')
+        land = Equipment.objects.values().filter(**filters)
+
         approver = role.userprofile_set.all()
         try:
             number = ExplorationApplication.objects.latest('number').number
@@ -86,6 +88,7 @@ class ApplicationCreateView(LoginRequiredMixin, View):
         ret = {
             'type_list': type_list,
             'customer': customer,
+            'land': land,
             'approver': approver,
             'new_number': new_number
         }
@@ -123,7 +126,7 @@ class ApplicationDetailView(LoginRequiredMixin, View):
         admin_user_list = []
         if 'id' in request.GET and request.GET['id']:
             work_order = get_object_or_404(ExplorationApplication, pk=request.GET['id'])
-            work_order_record = work_order.applicationrecord_set.all().order_by('add_time')
+            work_order_record = work_order.explorationapplicationrecord_set.all().order_by('add_time')
             try:
                 role = Role.objects.get(title="管理")
                 admin_user_ids = role.userprofile_set.values('id')
@@ -170,12 +173,15 @@ class ApplicationUpdateView(LoginRequiredMixin, View):
             filters['belongs_to_id'] = request.user.id
         customer = Customer.objects.values().filter(**filters)
         role = get_object_or_404(Role, title='审批')
+        land = Equipment.objects.values().filter(**filters)
+
         approver = role.userprofile_set.all()
         ret = {
             'work_order': work_order,
             'type_list': type_list,
             'customer': customer,
             'approver': approver,
+            'land': land,
         }
         return render(request, 'personal/workorder/workorder_update.html', ret)
 
@@ -232,6 +238,7 @@ class ApplicationSendView(LoginRequiredMixin, View):
                 work_order.receiver_id = request.POST['receiver']
                 work_order.status = "3"
                 work_order.do_time = request.POST['do_time']
+
                 work_order.save()
                 res['status'] = 'success'
                 try:
@@ -351,7 +358,7 @@ class WorkOrderUploadView(LoginRequiredMixin, View):
         res = dict(status='fail')
         #work_order_record = get_object_or_404(ApplicationRecord, name_id=request.user.id, work_order_id=request.POST['id'])
         filters = dict(name_id=request.user.id, work_order_id=request.POST['id'])
-        work_order_record = ApplicationRecord.objects.filter(**filters).last()
+        work_order_record = ExplorationApplicationRecord.objects.filter(**filters).last()
         work_order_record_upload_form = WorkOrderRecordUploadForm(request.POST, request.FILES, instance=work_order_record)
         if work_order_record_upload_form.is_valid():
             work_order_record_upload_form.save()
@@ -396,6 +403,6 @@ class WorkOrderDocumentListView(LoginRequiredMixin, View):
     """
     def get(self, request):
         fields = ['work_order__number', 'work_order__customer__unit', 'name__name', 'add_time', 'file_content']
-        ret = dict(data=list(ApplicationRecord.objects.filter(~Q(file_content='')).values(*fields).order_by('-add_time')))
+        ret = dict(data=list(ExplorationApplicationRecord.objects.filter(~Q(file_content='')).values(*fields).order_by('-add_time')))
 
         return HttpResponse(json.dumps(ret, cls=DjangoJSONEncoder), content_type='application/json')

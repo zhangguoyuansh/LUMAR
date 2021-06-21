@@ -345,7 +345,7 @@
                                         {#width : "10%",#}
                                         bSortable : "false",
                                         render : function(data, type, row, meta) {
-                                            var ret="<button title='编辑' onclick='doEquipmentUpdate("
+                                            var ret="<button title='Edit' onclick='doEquipmentUpdate("
                                             + data + ")'><i class='glyphicon glyphicon-pencil'></i></button>";
                                             return ret;
                                         }
@@ -456,7 +456,7 @@ function doWorkorderFinish(id){
 function doWorkOrderReturn(id){
 	    layer.open({
 		type : 2,
-		title : '工单退回',
+		title : 'Application rejected',
 		shadeClose : false,
         maxmin : true,
 		area : [ '770px', '300px' ],

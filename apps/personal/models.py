@@ -19,6 +19,7 @@ class ExplorationApplication(models.Model):
     content = models.CharField(max_length=300, verbose_name='工单内容')
     file_content = models.FileField(upload_to='file/%Y/%m', blank=True, null=True, verbose_name='项目资料')
     customer = models.ForeignKey(Customer, verbose_name='Traditional Owner',on_delete=models.CASCADE)
+    land = models.ForeignKey(Equipment, verbose_name='land',on_delete=models.CASCADE)
 
 
     proposer = models.ForeignKey(User, related_name='proposer', blank=True, null=True, on_delete=models.SET_NULL, verbose_name='申请人')
@@ -33,7 +34,7 @@ class ExplorationApplication(models.Model):
         return self.title
 
 
-class ApplicationRecord(models.Model):
+class ExplorationApplicationRecord(models.Model):
     type_choices = (('0', '退回'), ('1', "派发"), ('2', "执行"), ('3', "确认"))
     name = models.ForeignKey(User, verbose_name=u"记录人",on_delete=models.CASCADE)
     work_order = models.ForeignKey(ExplorationApplication, verbose_name=u"工单信息",on_delete=models.CASCADE)
@@ -48,3 +49,6 @@ class ApplicationRecord(models.Model):
 
     def __str__(self):
         return self.record_type
+
+
+
