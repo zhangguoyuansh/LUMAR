@@ -8,7 +8,7 @@ User = get_user_model()
 
 
 class ExplorationApplication(models.Model):
-    type_choices = (('0', '初次安装'), ('1', '售后现场'), ('2', '远程支持'), ('3', '售前支持'))
+    type_choices = (('0', 'Agent'), ('1', 'Applicant'))
     status_choices = (('0', '工单已退回'), ('1', '新建-保存'), ('2', '提交-等待审批'), ('3', '已审批-等待执行'), ('4', '已执行-等待确认'), ('5', '工单已完成'))
     number = models.CharField(max_length=10, verbose_name='工单号')
     title = models.CharField(max_length=50, verbose_name='标题')
@@ -20,6 +20,12 @@ class ExplorationApplication(models.Model):
     file_content = models.FileField(upload_to='file/%Y/%m', blank=True, null=True, verbose_name='项目资料')
     customer = models.ForeignKey(Customer, verbose_name='Traditional Owner',on_delete=models.CASCADE)
     land = models.ForeignKey(Equipment, verbose_name='land',on_delete=models.CASCADE)
+
+    venue = models.CharField(max_length=50,blank=True, null=True, verbose_name='venue')
+    catering = models.CharField(max_length=50,blank=True, null=True, verbose_name='catering')
+    accommodation = models.CharField(max_length=50,blank=True, null=True, verbose_name='accommodation')
+    travel = models.CharField(max_length=50,blank=True, null=True, verbose_name='travel')
+
 
 
     proposer = models.ForeignKey(User, related_name='proposer', blank=True, null=True, on_delete=models.SET_NULL, verbose_name='申请人')
@@ -40,7 +46,12 @@ class ExplorationApplicationRecord(models.Model):
     work_order = models.ForeignKey(ExplorationApplication, verbose_name=u"工单信息",on_delete=models.CASCADE)
     record_type = models.CharField(max_length=10, choices=type_choices, verbose_name=u"记录类型")
     content = models.CharField(max_length=500, verbose_name=u"记录内容", default="")
+
     file_content = models.FileField(upload_to='file/%Y/%m', blank=True, null=True, verbose_name='实施文档')
+
+    invoice = models.FileField(upload_to='file/%Y/%m', blank=True, null=True, verbose_name='实施文档')
+
+
     add_time = models.DateTimeField(auto_now_add=True, verbose_name=u"记录时间")
 
     class Meta:

@@ -24,12 +24,12 @@
             <div class="inner">
               <h3>{{ work_order_1 }}</h3>
 
-              <p>已保存的工单</p>
+              <p>Saved applications</p>
             </div>
             <div class="icon">
               <i class="fa fa-pencil"></i>
             </div>
-            <a href="#" class="small-box-footer">{{ start_date| date:'Y年m月' }}</a>
+            <a href="#" class="small-box-footer">{{ start_date| date:'Y-m' }}</a>
           </div>
         </div>
         <!-- ./col -->
@@ -39,12 +39,12 @@
             <div class="inner">
               <h3>{{ work_order_2 }}</h3>
 
-              <p>等待派发的工单</p>
+              <p>Pending review</p>
             </div>
             <div class="icon">
               <i class="fa fa-send-o"></i>
             </div>
-            <a href="#" class="small-box-footer">{{ start_date| date:'Y年m月' }}</a>
+            <a href="#" class="small-box-footer">{{ start_date| date:'Y-m' }}</a>
           </div>
         </div>
         <!-- ./col -->
@@ -54,12 +54,12 @@
             <div class="inner">
               <h3>{{ work_order_3 }}</h3>
 
-              <p>等待执行的工单</p>
+              <p>Waiting for signature</p>
             </div>
             <div class="icon">
               <i class="glyphicon glyphicon-play"></i>
             </div>
-            <a href="#" class="small-box-footer">{{ start_date| date:'Y年m月' }}</a>
+            <a href="#" class="small-box-footer">{{ start_date| date:'Y-m' }}</a>
           </div>
         </div>
         <!-- ./col -->
@@ -69,12 +69,12 @@
             <div class="inner">
               <h3>{{ work_order_4 }}</h3>
 
-              <p>等待确认的工单</p>
+              <p>Pending confirmation</p>
             </div>
             <div class="icon">
               <i class="fa fa-check"></i>
             </div>
-            <a href="#" class="small-box-footer">{{ start_date| date:'Y年m月' }}</a>
+            <a href="#" class="small-box-footer">{{ start_date| date:'Y-m' }}</a>
           </div>
         </div>
         <!-- ./col -->
@@ -84,14 +84,14 @@
         <div class="col-md-12">
             <div class="box">
                <div class="box-header with-border">
-                  <h3 class="box-title">工单数据统计</h3>
+                  <h3 class="box-title">Exploration application statistics</h3>
                   <div class="box-tools pull-right">
                     <div class="btn-group">
                       <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" title="选择统计类型">
                         <i class="fa fa-list-alt"></i></button>
                       <ul class="dropdown-menu bg-aqua" role="menu">
-                        <li><a href="{% url 'personal' %}?value=0">工单提交统计</a></li>
-                        <li><a href="{% url 'personal' %}?value=1">工单执行统计</a></li>
+                        <li><a href="{% url 'personal' %}?value=0">Application submission statistics</a></li>
+                        <li><a href="{% url 'personal' %}?value=1">Signature statistics</a></li>
                       </ul>
                     </div>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -132,7 +132,7 @@
     option = null;
     option = {
         title : {
-            text: '月度工单统计',
+            text: 'Monthly Application Statistics',
             subtext: ''
         },
         tooltip : {
@@ -152,7 +152,7 @@
         xAxis : [
             {
                 type : 'category',
-                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                data : ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
             }
         ],
         yAxis : [
@@ -168,8 +168,8 @@
                 data:{{ data.count }},
                 markPoint : {
                     data : [
-                       {type : 'max', name: '最大值'},
-                       {type : 'min', name: '最小值'}
+                       {type : 'max', name: 'Max'},
+                       {type : 'min', name: 'Min'}
                     ]
             },
         },
@@ -190,7 +190,7 @@
     option = null;
     option = {
         title : {
-            text: '年度工单比例',
+            text: 'Annual Application Statistics',
             subtext: '',
             x:'center'
         },
@@ -212,7 +212,7 @@
         },
         series : [
             {
-                name: '工单申请比例',
+                name: 'Application proportion',
                 type: 'pie',
                 radius : '55%',
                 center: ['50%', '60%'],

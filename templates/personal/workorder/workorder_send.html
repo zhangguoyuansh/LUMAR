@@ -18,24 +18,58 @@
 		<div class="box-body">
           <fieldset>
             <legend>
-              <h4>工单派发</h4>
+              <h4>Approved and arrange meeting</h4>
             </legend>
 
             <div class="form-group has-feedback">
-                <label class="col-sm-2 control-label">接单人</label>
+                <label class="col-sm-2 control-label">receiver</label>
                 <div class="col-sm-3">
                   <select class="form-control select2" style="width:100%;" name="receiver">
                   <option value=""></option>
                   {% for engineer in engineers %}
-                  <option value="{{ engineer.id }}">{{ engineer.name }}</option>
+                  <option  value="{{ engineer.id }}">{{ engineer.name }}</option>
                   {% endfor %}
                  </select>
                  </div>
-                <label class="col-sm-2 control-label">安排时间</label>
+{#                <div class="col-sm-3">#}
+{#                    {% for engineer in engineers %}#}
+{#                        <option class="form-control" name="receiver" type="text" readonly="readonly" value="{{ engineer.id }}">{{ engineer.name }}</option>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            未找到解决办法#}
+
+                <label class="col-sm-2 control-label">Meeting time</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control pull-right form_datetime" name="do_time" value="{{ work_order.do_time |date:'Y-m-d H:m:s'}}"/>
                 </div>
             </div>
+
+
+
+
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">Venue</label>
+                <div class="col-sm-3">
+                    <input class="form-control" name="venue" type="text" value="{{ work_order.venue }}"/>
+                </div>
+                <label class="col-sm-2 control-label">Catering</label>
+                <div class="col-sm-3">
+                    <input class="form-control" name="catering" type="text" value="{{ work_order.catering }}"/>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">Accommodation</label>
+                <div class="col-sm-3">
+                    <input class="form-control" name="accommodation" type="text" value="{{ work_order.accommodation }}"/>
+                </div>
+                <label class="col-sm-2 control-label">Travel</label>
+                <div class="col-sm-3">
+                    <input class="form-control" name="travel" type="text" value="{{ work_order.travel }}"/>
+                </div>
+            </div>
+
+
+
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">派发说明</label>
                 <div class="col-sm-8">

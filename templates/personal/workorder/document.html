@@ -15,7 +15,7 @@
   <ol class="breadcrumb">
     <li><a href=""><i class="fa fa-dashboard"></i>LUMAR Enterprise</a></li>
     <li class="active"><a href="{% url 'personal' %}">My WorkBench</a></li>
-    <li class="active"><a href="{% url 'personal-document' %}">工单文档</a></li>
+    <li class="active"><a href="{% url 'personal-document' %}">Meeting</a></li>
   </ol>
 </section>
 <!-- Main content -->
@@ -26,12 +26,16 @@
                 <table id="dtbList" class="display" cellspacing="0" width="100%">
                     <thead>
                     <tr valign="middle">
-                        <th>工单号</th>
-                        <th>Traditional Owner</th>
-                        <th>上传人</th>
-                        <th>上传时间</th>
-                        <th>文件内容</th>
-                        <th>下载</th>
+                        <th>Application ID</th>
+                        <th>Meeting time</th>
+                        <th>Venue</th>
+                        <th>Accommodation</th>
+                        <th>Catering</th>
+                        <th>Travel</th>
+{#                        <th>Note</th>#}
+                        <th>Signature</th>
+                        <th>View</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -78,21 +82,30 @@
 								{
 									data : "work_order__number",
 								},
-								{
-									data : "work_order__customer__unit",
-								},
-
-                                {
-									data : "name__name",
-								},
                                 {
 									data : "add_time",
                                     render : function(data, type, full, meta) {
-                                         return  moment(data).format("YYYY-MM-DD");}
+                                         return  moment(data).format("YYYY-MM-DD HH:MM");}
+								},
+								{
+									data : "work_order__venue",
+								},
+
+                                {
+									data : "work_order__accommodation",
+								},
+
+                                {
+									data : "work_order__catering",
 								},
                                 {
-									data : "file_content",
+									data : "work_order__travel",
 								},
+
+
+                                {#{#}
+								{#	data : "file_content",#}
+								{#},#}
 								{
 									data : "file_content",
 									bSortable : "false",
@@ -100,12 +113,27 @@
 										var ret="<a href='/media/"+ data +"' download='"+ data +"'><button title='下载文档'><i class='fa fa-cloud-download\'></i></button></a>";
 										return ret;
 									}
-								} ],
+								},
+
+								{
+									data : "work_order_id",
+									bSortable : "false",
+									render : function(data, type, row, meta) {
+										var ret="<button title='工单详情' onclick='doDetail("
+										+ data + ")'><i class='glyphicon glyphicon-list-alt'></i></button>";
+
+										return ret;
+									}
+								}
+
+								],
 						}));
 		return oTable;
 	}
 
 });
-
+function doDetail(id){
+    window.location.href="{% url 'personal-application-detail' %}?id="+id;
+}
 </script>
 {% endblock %}

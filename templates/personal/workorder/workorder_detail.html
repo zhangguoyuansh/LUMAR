@@ -144,6 +144,11 @@
                 <button type="button" class="btn btn-default btn-sm" onclick="doWorkorderUpload({{ work_order.id }})">
                   <i class="fa fa-cloud-upload">上传配置资料</i>
                 </button>
+
+                <button type="button" class="btn btn-default btn-sm" onclick="doWorkorderInvoice({{ work_order.id }})">
+                  <i class="fa fa-cloud-upload">上传Invoice</i>
+                </button>
+
             </div>
            </div>
 
@@ -239,6 +244,9 @@
                     <span class="text-orange"><small>{{ record.get_record_type_display }}</small></span>
                     <small>{{ record.add_time }}</small>
                     <p class="text-muted margin-top-5">{{ record.content }}</p>
+
+                    <a href="/media/{{ record.invoice }}"><small class="pull-right">{{ record.invoice | cut:'file' }}</small></a>
+
                     <a href="/media/{{ record.file_content }}"><small class="pull-right">{{ record.file_content | cut:'file' }}</small></a>
                   </div>
                 </li>
@@ -429,7 +437,7 @@ function doWorkorderExecute(id){
 		title : '工单执行',
 		shadeClose : false,
         maxmin : true,
-		area : [ '770px', '400px' ],
+		area : [ '800px', '500px' ],
 		content : [ "{% url 'personal-workorder-execute' %}"+'?id='+id],
 		end : function() {
             window.location.reload();
@@ -444,7 +452,7 @@ function doWorkorderFinish(id){
 		title : '工单确认',
 		shadeClose : false,
         maxmin : true,
-		area : [ '770px', '400px' ],
+		area : [ '800px', '500px' ],
 		content : [ "{% url 'personal-workorder-finish' %}"+'?id='+id],
 		end : function() {
             window.location.reload();
@@ -482,6 +490,23 @@ function doWorkorderUpload(id){
 		}
 	});
 }
+
+function doWorkorderInvoice(id){
+	    layer.open({
+		type : 2,
+		title : '文件上传',
+		shadeClose : false,
+        maxmin : true,
+		area : [ '770px', '300px' ],
+		content : [ "{% url 'personal-workorder-invoice' %}"+'?id='+id],
+		end : function() {
+            window.location.reload();
+
+		}
+	});
+}
+
+
 
 function doWorkorderProjectUpload(id){
 	    layer.open({

@@ -220,8 +220,13 @@ class ApplicationSendView(LoginRequiredMixin, View):
 
     def get(self, request):
         ret = dict()
-        engineers = User.objects.filter(department__title='技术部')
+        # engineers = User.objects.filter(department__title='技术部')
+
+
         work_order = get_object_or_404(ExplorationApplication, pk=request.GET['id'])
+        engineers = User.objects.filter(id= work_order.proposer.id)
+
+
         ret['engineers'] = engineers
         ret['work_order'] = work_order
         ret['record_type'] = "1"
@@ -233,11 +238,21 @@ class ApplicationSendView(LoginRequiredMixin, View):
         if work_order_record_form.is_valid():
             work_order = get_object_or_404(ExplorationApplication, pk=request.POST['work_order'])
             status = work_order.status
-            if status in ['0', '2'] and request.user.id == work_order.approver_id:
+            # if status in ['0', '2'] and request.user.id == work_order.approver_id:
+
+            if status in ['0', '2']:
+
                 work_order_record_form.save()
                 work_order.receiver_id = request.POST['receiver']
                 work_order.status = "3"
                 work_order.do_time = request.POST['do_time']
+                work_order.venue = request.POST['venue']
+                work_order.accommodation = request.POST['accommodation']
+                work_order.catering = request.POST['catering']
+                work_order.travel = request.POST['travel']
+
+
+
 
                 work_order.save()
                 res['status'] = 'success'
@@ -296,9 +311,11 @@ class ApplicationFinishView(LoginRequiredMixin, View):
         res = dict(status='fail')
         work_order_record_form = WorkOrderRecordForm(request.POST)
         work_order = get_object_or_404(ExplorationApplication, pk=request.POST['work_order'])
-        if work_order_record_form.is_valid() and work_order.proposer.id == request.user.id:
+        # if work_order_record_form.is_valid() and work_order.proposer.id == request.user.id:
+
+        if work_order_record_form.is_valid() and work_order.approver.id == request.user.id:
             status = work_order.status
-            if status == '4' and request.user.id == work_order.proposer_id:
+            if status == '4' and request.user.id == work_order.approver_id:
                 work_order_record_form.save()
                 work_order.status = "5"
                 work_order.save()
@@ -366,6 +383,29 @@ class WorkOrderUploadView(LoginRequiredMixin, View):
         return HttpResponse(json.dumps(res, cls=DjangoJSONEncoder), content_type='application/json')
 
 
+class WorkOrderInvoiceView(LoginRequiredMixin, View):
+    """
+    上传配置资料：工单执行记录配置资料上传
+    """
+    def get(self, request):
+        ret = dict()
+        work_order = get_object_or_404(ExplorationApplication, pk=request.GET['id'])
+        ret['work_order'] = work_order
+        return render(request, 'personal/workorder/workorder_invoice.html', ret)
+
+    def post(self, request):
+        res = dict(status='fail')
+        #work_order_record = get_object_or_404(ApplicationRecord, name_id=request.user.id, work_order_id=request.POST['id'])
+        filters = dict(name_id=request.user.id, work_order_id=request.POST['id'])
+        work_order_record = ExplorationApplicationRecord.objects.filter(**filters).last()
+        work_order_record_upload_form = WorkOrderRecordUploadForm(request.POST, request.FILES, instance=work_order_record)
+        if work_order_record_upload_form.is_valid():
+            work_order_record_upload_form.save()
+            res['status'] = 'success'
+        return HttpResponse(json.dumps(res, cls=DjangoJSONEncoder), content_type='application/json')
+
+
+
 class WorkOrderProjectUploadView(LoginRequiredMixin, View):
     """
     上传项目资料：工单内容项目资料上传
@@ -379,6 +419,11 @@ class WorkOrderProjectUploadView(LoginRequiredMixin, View):
     def post(self, request):
         res = dict(status='fail')
         work_order = get_object_or_404(ExplorationApplication, pk=request.POST['id'])
+
+        # filters = dict(name_id=request.user.id, work_order_id=request.POST['id'])
+        # work_order_record = ExplorationApplicationRecord.objects.filter(**filters).last()
+
+
         work_order_project_upload_form = WorkOrderProjectUploadForm(request.POST, request.FILES, instance=work_order)
         if work_order_project_upload_form.is_valid() and request.user.id == work_order.proposer_id:
             work_order_project_upload_form.save()
@@ -402,7 +447,7 @@ class WorkOrderDocumentListView(LoginRequiredMixin, View):
     工单文档列表
     """
     def get(self, request):
-        fields = ['work_order__number', 'work_order__customer__unit', 'name__name', 'add_time', 'file_content']
+        fields = ['work_order__number', 'work_order__venue', 'work_order__accommodation', 'add_time', 'work_order__catering','work_order__travel','file_content','work_order_id']
         ret = dict(data=list(ExplorationApplicationRecord.objects.filter(~Q(file_content='')).values(*fields).order_by('-add_time')))
 
         return HttpResponse(json.dumps(ret, cls=DjangoJSONEncoder), content_type='application/json')

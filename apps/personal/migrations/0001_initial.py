@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('number', models.CharField(max_length=10, verbose_name='工单号')),
                 ('title', models.CharField(max_length=50, verbose_name='标题')),
-                ('type', models.CharField(choices=[('0', '初次安装'), ('1', '售后现场'), ('2', '远程支持'), ('3', '售前支持')], default='0', max_length=10, verbose_name='工单类型')),
+                ('type', models.CharField(choices=[('0', 'Agent'), ('1', 'Applicant')], default='0', max_length=10, verbose_name='Holder Type')),
                 ('status', models.CharField(choices=[('0', '工单已退回'), ('1', '新建-保存'), ('2', '提交-等待审批'), ('3', '已审批-等待执行'), ('4', '已执行-等待确认'), ('5', '工单已完成')], default='0', max_length=10, verbose_name='工单状态')),
                 ('do_time', models.DateTimeField(default='', verbose_name='安排时间')),
                 ('add_time', models.DateTimeField(auto_now_add=True, verbose_name='创建时间')),

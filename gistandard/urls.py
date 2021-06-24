@@ -60,6 +60,8 @@ urlpatterns = [
     url(r'^personal/application_rec/execute', order.ApplicationExecuteView.as_view(), name="personal-workorder-execute"),
     url(r'^personal/application_rec/finish', order.ApplicationFinishView.as_view(), name="personal-workorder-finish"),
     url(r'^personal/application_rec/upload', order.WorkOrderUploadView.as_view(), name="personal-workorder-upload"),
+    url(r'^personal/application_rec/invoice', order.WorkOrderInvoiceView.as_view(), name="personal-workorder-invoice"),
+
     url(r'^personal/application_rec/return', order.WorkOrderReturnView.as_view(), name="personal-workorder-return"),
     url(r'^personal/application_Icrt/upload', order.WorkOrderProjectUploadView.as_view(),
         name="personal-workorder-project-upload"),
