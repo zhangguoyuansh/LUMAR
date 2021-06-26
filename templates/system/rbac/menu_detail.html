@@ -12,20 +12,20 @@
 		<div class="box-body">
           <fieldset>
             <legend>
-              <h4>菜单信息</h4>
+              <h4>Menu Info</h4>
             </legend>
             <div class="form-group has-feedback">
-                <label class="col-sm-2 control-label">名称</label>
+                <label class="col-sm-2 control-label">Title</label>
                 <div class="col-sm-3">
                     <input class="form-control" name="title" type="text" value="{{ menu.title }}"/>
                 </div>
-                <label class="col-sm-2 control-label">代码</label>
+                <label class="col-sm-2 control-label">Code</label>
                 <div class="col-sm-3">
                     <input class="form-control" name="code" type="text" value="{{ menu.code }}"/>
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label class="col-sm-2 control-label">状态</label>
+                <label class="col-sm-2 control-label">Status</label>
                 <div class="col-sm-3">
                     <label class="control-label">
                       <input type="radio" class="minimal" name="is_top"  value="True" {% ifequal menu.is_top True %}checked{% endifequal %}>Enable
@@ -34,7 +34,7 @@
                       <input type="radio" class="minimal" name="is_top"  value="False" {% ifequal menu.is_top False %}checked{% endifequal %}>Disable
                     </label>
                 </div>
-                <label class="col-sm-2 control-label">父菜单</label>
+                <label class="col-sm-2 control-label">Parent Menu</label>
                   <div class="col-sm-3">
                     <select class="form-control select2" name="parent">
                     <option value="{{ menu.parent.id }}">{{ menu.parent.title }}</option>
@@ -49,7 +49,7 @@
                 <div class="col-sm-3">
                     <input class="form-control" name="url" type="text" value="{{ menu.url }}"/>
                 </div>
-                <label class="col-sm-2 control-label">图标</label>
+                <label class="col-sm-2 control-label">Icon</label>
                 <div class="col-sm-3">
                     <input class="form-control" name="icon" type="text" value="{{ menu.icon | default:'' }}"/>
                 </div>
@@ -58,8 +58,8 @@
 		</div>
 		<div class="box-footer ">
 			<div class="row span7 text-center ">
-              <button type="button" id="btnCancel" class="btn btn-default margin-right " >重置</button>
-              <button type="button" id="btnSave" class="btn btn-info margin-right " >保存</button>
+              <button type="button" id="btnCancel" class="btn btn-default margin-right " >Reset</button>
+              <button type="button" id="btnSave" class="btn btn-info margin-right " >Save</button>
 			</div>
 		</div>
 

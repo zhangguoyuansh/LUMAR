@@ -12,8 +12,8 @@
 <section class="content-header margin-bottom">
   <ol class="breadcrumb">
     <li><a href=""><i class="fa fa-dashboard"></i>LUMAR Enterprise</a></li>
-    <li class="active"><a href="">工单管理</a></li>
-    <li class="active"><a href="#">工单详情</a></li>
+    <li class="active"><a href="">Application management</a></li>
+    <li class="active"><a href="#">Application detail</a></li>
   </ol>
 </section>
     <!-- Main content -->
@@ -25,7 +25,7 @@
             <div class="box-header with-border">
               <i class="fa fa-warning"></i>
 
-              <h3 class="box-title">警告</h3>
+              <h3 class="box-title">warning</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -83,7 +83,7 @@
             {% if work_order.receiver %}
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">接单人信息</h3>
+              <h3 class="box-title">proposer info</h3>
 
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -105,7 +105,7 @@
        <div class="col-md-9">
         <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">工单详情</h3>
+              <h3 class="box-title">Application detail</h3>
 
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -117,23 +117,23 @@
             <div class="btn-group margin-l-5">
               <button type="button" class="btn btn-danger btn-sm" title="退回工单" id="btnWorkListReturn"
                       onclick="doWorkOrderReturn({{ work_order.id }})">
-                  <i class="fa fa-undo"> 退回</i>
+                  <i class="fa fa-undo"> return</i>
               </button>
               <button type="button" class="btn btn-info btn-sm" title="编辑工单" id="btnWorkListEdit"
                       onclick="doWorkorderUpdate({{ work_order.id }})">
-                  <i class="fa fa-pencil"> 编辑</i>
+                  <i class="fa fa-pencil"> Edit</i>
               </button>
               <button type="button" class="btn btn-success btn-sm" title="派发工单" id="btnWorkListSend"
                       onclick="doWorkorderSend({{ work_order.id }})">
-                  <i class="fa fa-send-o"> 派发</i>
+                  <i class="fa fa-send-o"> Assess</i>
               </button>
               <button type="button" class="btn btn-primary btn-sm" title="执行反馈" id="btnWorkListExecute"
                     onclick="doWorkorderExecute({{ work_order.id }})">
-                  <i class="glyphicon glyphicon-play"> 执行</i>
+                  <i class="glyphicon glyphicon-play"> receipt</i>
               </button>
               <button type="button" class="btn btn-default btn-sm" title="执行确认" id="btnWorkListFinish"
                       onclick="doWorkorderFinish({{ work_order.id }})">
-                  <i class="fa fa-check"> 确认</i>
+                  <i class="fa fa-check"> Confirm</i>
               </button>
 
             </div>
@@ -158,12 +158,12 @@
                   <table class="table" id="tbWorkList"  style="white-space: nowrap;">
                     <tbody>
                         <tr class="warning">
-                            <td><strong> 工单号</strong></td>
+                            <td><strong> Application ID</strong></td>
                             <td>{{ work_order.number }}</td>
 
                         </tr>
                         <tr>
-                            <td><strong> 标题</strong></td>
+                            <td><strong> Title</strong></td>
                             <td>{{ work_order.title }}</td>
 
                         </tr>
@@ -178,7 +178,7 @@
 
                         </tr>
                         <tr class="warning">
-                            <td><strong> 申请时间</strong></td>
+                            <td><strong> Apply time</strong></td>
                             <td>{{ work_order.add_time }}</td>
 
                         </tr>
@@ -188,7 +188,7 @@
 
                         </tr>
                         <tr class="warning">
-                            <td><strong> 审批人:</strong></td>
+                            <td><strong> approver:</strong></td>
                             <td>{{ work_order.approver.name }}</td>
 
                         </tr>
@@ -206,7 +206,7 @@
            <div class="box">
             <div class="box-header with-border">
               <i class="fa fa-commenting"></i>
-              <h3 class="box-title">执行记录</h3>
+              <h3 class="box-title">Progress</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -269,11 +269,11 @@
                 <thead>
                 <tr valign="middle">
                     <th>ID</th>
-                    <th>设备编号</th>
+                    <th>Area Units</th>
                     <th>类型</th>
                     <th>型号</th>
-                    <th>购买日期</th>
-                    <th>质保日期</th>
+                    <th>Add time</th>
+                    <th>expiration date</th>
                     <th>操作</th>
                 </tr>
                 </thead>

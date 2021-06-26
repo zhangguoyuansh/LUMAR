@@ -3,44 +3,46 @@
 # __data__  : 2017/12/20
 
 from django import forms
-from .models import Supplier, AssetType, Customer, EquipmentType, Equipment, Asset, AssetFile
+# from .models import Supplier, AssetType, Customer, EquipmentType, Equipment, Asset, AssetFile
+from .models import  Customer, EquipmentType, Equipment
 
 
-class SupplierCreateForm(forms.ModelForm):
-    class Meta:
-        model = Supplier
-        fields = '__all__'
-        error_messages = {
-            "company": {"required": "请输入分销商公司名称"},
-            "address": {"required": "请输入分销商公司地址"},
-            "linkname": {"required": "请输入分销商联系人"},
-            "phone": {"required": "请输入分销商联系电话"}
-        }
 
-    def clean(self):
-        cleaned_data = super(SupplierCreateForm, self).clean()
-        company = cleaned_data.get("company")
-        if Supplier.objects.filter(company=company).count():
-            raise forms.ValidationError('分销商："{}"已存在'.format(company))
-
-
-class SupplierUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Supplier
-        fields = '__all__'
-        error_messages = {
-            "company": {"required": "请输入分销商公司名称"},
-            "address": {"required": "请输入分销商公司地址"},
-            "linkname": {"required": "请输入分销商联系人"},
-            "phone": {"required": "请输入分销商联系电话"}
-        }
-
-
-class AssetTypeForm(forms.ModelForm):
-    class Meta:
-        model = AssetType
-        fields = '__all__'
-
+# class SupplierCreateForm(forms.ModelForm):
+#     class Meta:
+#         model = Supplier
+#         fields = '__all__'
+#         error_messages = {
+#             "company": {"required": "请输入分销商公司名称"},
+#             "address": {"required": "请输入分销商公司地址"},
+#             "linkname": {"required": "请输入分销商联系人"},
+#             "phone": {"required": "请输入分销商联系电话"}
+#         }
+#
+#     def clean(self):
+#         cleaned_data = super(SupplierCreateForm, self).clean()
+#         company = cleaned_data.get("company")
+#         if Supplier.objects.filter(company=company).count():
+#             raise forms.ValidationError('分销商："{}"已存在'.format(company))
+#
+#
+# class SupplierUpdateForm(forms.ModelForm):
+#     class Meta:
+#         model = Supplier
+#         fields = '__all__'
+#         error_messages = {
+#             "company": {"required": "请输入分销商公司名称"},
+#             "address": {"required": "请输入分销商公司地址"},
+#             "linkname": {"required": "请输入分销商联系人"},
+#             "phone": {"required": "请输入分销商联系电话"}
+#         }
+#
+#
+# class AssetTypeForm(forms.ModelForm):
+#     class Meta:
+#         model = AssetType
+#         fields = '__all__'
+#
 
 class CustomerCreateForm(forms.ModelForm):
     class Meta:
@@ -95,7 +97,7 @@ class EquipmentCreateForm(forms.ModelForm):
         cleaned_data = super(EquipmentCreateForm, self).clean()
         number = cleaned_data.get("number")
         if Equipment.objects.filter(number=number).count():
-            raise forms.ValidationError('设备编号：{}已存在'.format(number))
+            raise forms.ValidationError('Area Units：{}已存在'.format(number))
 
 
 class EquipmentUpdateForm(forms.ModelForm):
@@ -114,39 +116,39 @@ class EquipmentUpdateForm(forms.ModelForm):
         }
 
 
-class AssetCreateForm(forms.ModelForm):
-    class Meta:
-        model = Asset
-        fields = '__all__'
-        error_messages = {
-            "assetNum": {"required": "资产编号不能为空"},
-            "model": {"required": "请输入资产型号"},
-            "buyDate": {"required": "请输入购买日期"},
-            "warrantyDate": {"required": "请输入质保日期"},
-            "status": {"required": "请选择资产状态"}
-        }
-
-    def clean(self):
-        cleaned_data = super(AssetCreateForm, self).clean()
-        number = cleaned_data.get("assetNum")
-        if Asset.objects.filter(assetNum=number).count():
-
-            raise forms.ValidationError('资产编号：{}已存在'.format(number))
-
-class AssetUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Asset
-        fields = '__all__'
-        error_messages = {
-            "assetNum": {"required": "资产编号不能为空"},
-            "model": {"required": "请输入资产型号"},
-            "buyDate": {"required": "请输入购买日期"},
-            "warrantyDate": {"required": "请输入质保日期"},
-            "status": {"required": "请选择资产状态"}
-        }
-
-
-class AssetUploadForm(forms.ModelForm):
-    class Meta:
-        model = AssetFile
-        fields = '__all__'
+# class AssetCreateForm(forms.ModelForm):
+#     class Meta:
+#         model = Asset
+#         fields = '__all__'
+#         error_messages = {
+#             "assetNum": {"required": "资产编号不能为空"},
+#             "model": {"required": "请输入资产型号"},
+#             "buyDate": {"required": "请输入购买日期"},
+#             "warrantyDate": {"required": "请输入质保日期"},
+#             "status": {"required": "请选择资产状态"}
+#         }
+#
+#     def clean(self):
+#         cleaned_data = super(AssetCreateForm, self).clean()
+#         number = cleaned_data.get("assetNum")
+#         if Asset.objects.filter(assetNum=number).count():
+#
+#             raise forms.ValidationError('资产编号：{}已存在'.format(number))
+#
+# class AssetUpdateForm(forms.ModelForm):
+#     class Meta:
+#         model = Asset
+#         fields = '__all__'
+#         error_messages = {
+#             "assetNum": {"required": "资产编号不能为空"},
+#             "model": {"required": "请输入资产型号"},
+#             "buyDate": {"required": "请输入购买日期"},
+#             "warrantyDate": {"required": "请输入质保日期"},
+#             "status": {"required": "请选择资产状态"}
+#         }
+#
+#
+# class AssetUploadForm(forms.ModelForm):
+#     class Meta:
+#         model = AssetFile
+#         fields = '__all__'

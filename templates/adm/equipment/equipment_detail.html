@@ -11,8 +11,8 @@
 <section class="content-header margin-bottom">
   <ol class="breadcrumb">
     <li><a href=""><i class="fa fa-dashboard"></i>LUMAR Enterprise</a></li>
-    <li class="active"><a href="{% url 'adm-equipment:equipment' %}">设备管理</a></li>
-    <li class="active"><a href="{% url 'adm-equipment:equipment-detail' %}">设备详情</a></li>
+    <li class="active"><a href="{% url 'adm-equipment:equipment' %}">Land manage</a></li>
+    <li class="active"><a href="{% url 'adm-equipment:equipment-detail' %}">Land detail</a></li>
   </ol>
 </section>
     <!-- Main content -->
@@ -65,69 +65,69 @@
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">设备信息</a></li>
+              <li class="active"><a href="#activity" data-toggle="tab">Land Info</a></li>
               <li><a href="#timeline" data-toggle="tab">维保记录</a></li>
               <li class="pull-right"><a href="" data-toggle="tab">
                   <button type="button" id="btnReturn" class="btn btn-default">
-                  <i class="fa fa-reply"></i>返回
+                  <i class="fa fa-reply"></i>Return
                   </button>
               </a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
                 <div class="box-header">
-                    <h3 class="box-title text-bold">设备信息：</h3>
+                    <h3 class="box-title text-bold">Land Info：</h3>
                 </div>
                 <div class="box-body no-padding">
                   <table class="table table-striped"><tbody>
                     <tr>
-                        <td style="width: 30%"><strong>设备编号</strong></td>
+                        <td style="width: 30%"><strong>Area Units</strong></td>
                       <td>{{ equipment.number }}</td>
                     </tr>
                     <tr>
-                      <td><strong>设备类型</strong></td>
+                      <td><strong>Type</strong></td>
                       <td>{{ equipment.equipment_type }}</td>
                     </tr>
                     <tr>
-                      <td><strong>设备型号</strong></td>
+                      <td><strong>Area SqKm</strong></td>
                       <td>{{ equipment.equipment_model }}</td>
                     </tr>
                     <tr>
-                      <td><strong>购买日期</strong></td>
+                      <td><strong>Add time</strong></td>
                       <td>{{ equipment.buy_date }}</td>
                     </tr>
                     <tr>
-                      <td><strong>质保日期</strong></td>
+                      <td><strong>expiration date</strong></td>
                       <td>{{ equipment.warranty_date }}</td>
                     </tr>
+{#                    <tr>#}
+{#                      <td><strong>费用核算</strong></td>#}
+{#                      <td>{% if equipment.accounting is True %}已核算{% else %}未核算{% endif %}</td>#}
+{#                    </tr>#}
                     <tr>
-                      <td><strong>费用核算</strong></td>
-                      <td>{% if equipment.accounting is True %}已核算{% else %}未核算{% endif %}</td>
-                    </tr>
-                    <tr>
-                      <td><strong>配置说明</strong></td>
+                      <td><strong>Description</strong></td>
                       <td>{{ equipment.config_desc }}</td>
                     </tr>
                   </tbody></table>
                 </div>
-                <div class="box-header">
-                    <h3 class="box-title text-bold">分销商信息:</h3>
-                </div>
+{#                <div class="box-header">#}
+{#                    <h3 class="box-title text-bold">分销商信息:</h3>#}
+{#                </div>#}
                 <div class="box-body no-padding">
-                  <table class="table table-striped"><tbody>
-                    <tr>
-                      <td style="width: 30%"><strong>分销商</strong></td>
-                      <td>{{ equipment.supplier.company }}</td>
-                    </tr>
-                    <tr>
-                      <td><strong>联系人</strong></td>
-                      <td>{{ equipment.supplier.linkname }}</td>
-                    </tr>
-                    <tr>
-                      <td><strong>联系电话</strong></td>
-                      <td>{{ equipment.supplier.phone }}</td>
-                    </tr>
-                  </tbody></table>
+{#                  <table class="table table-striped"><tbody>#}
+{#                    <tr>#}
+{#                      <td style="width: 30%"><strong>分销商</strong></td>#}
+{#                      <td>{{ equipment.supplier.company }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <td><strong>联系人</strong></td>#}
+{#                      <td>{{ equipment.supplier.linkname }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <td><strong>联系电话</strong></td>#}
+{#                      <td>{{ equipment.supplier.phone }}</td>#}
+{#                    </tr>#}
+{#                  </tbody></table>#}
                 </div>
               </div>
               <!-- /.tab-pane -->

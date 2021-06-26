@@ -12,7 +12,9 @@ from django.core.serializers.json import DjangoJSONEncoder
 from utils.mixin_utils import LoginRequiredMixin
 from rbac.models import Menu
 from system.models import SystemSetup
-from .models import Equipment, EquipmentType, Customer, Supplier, ServiceInfo
+# from .models import Equipment, EquipmentType, Customer, Supplier, ServiceInfo
+from .models import Equipment, EquipmentType, Customer, ServiceInfo
+
 from .forms import EquipmentCreateForm, EquipmentUpdateForm
 
 User = get_user_model()
@@ -86,10 +88,10 @@ class EquipmentCreateView(LoginRequiredMixin, View):
         if request.user.department_id == 9:
             filters['belongs_to_id'] = request.user.id
         customer = Customer.objects.values().filter(**filters)
-        suppliers = Supplier.objects.values().filter(**filters)
+        # suppliers = Supplier.objects.values().filter(**filters)
         ret['equipment_type'] = equipment_type
         ret['customer'] = customer
-        ret['suppliers'] = suppliers
+        # ret['suppliers'] = suppliers
 
         # 获取登陆用户的角色组返回给前端，用来控制费用核算的显示状态
         user_info = User.objects.get(id=request.user.id)

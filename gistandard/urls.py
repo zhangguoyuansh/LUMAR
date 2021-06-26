@@ -41,7 +41,7 @@ urlpatterns = [
     url(r'^adm/$', AdmView.as_view(), name="adm-main"),
     url(r'^adm/bsm/', include(('adm.urls', 'adm-bsm'))),
     url(r'^adm/equipment/', include(('adm.urls_equipment', 'adm-equipment'))),
-    url(r'^adm/asset/', include(('adm.urls_asset', 'adm-asset'))),
+    # url(r'^adm/asset/', include(('adm.urls_asset', 'adm-asset'))),
 
     url(r'^personal/$', personal_views.PersonalView.as_view(), name="personal"),
     url(r'^personal/userinfo', personal_views.UserInfoView.as_view(), name="personal-user_info"),

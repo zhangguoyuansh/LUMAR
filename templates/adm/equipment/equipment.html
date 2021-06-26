@@ -47,11 +47,11 @@
                 <div class="btn-group pull-right">
                     <form class="form-inline">
                         <div class="form-group">
-                            <label>质保状态：</label>
+                            <label>Validity status：</label>
                             <select id="select" name="select" class="form-control">
-                                <option style="text-align:center" value="">-----所有-----</option>
-                                <option value="0">已过质保期</option>
-                                <option value="1">质保期小于一年</option>
+                                <option style="text-align:center" value="">-----All-----</option>
+                                <option value="0">Expired</option>
+                                <option value="1">Less than one year</option>
                             </select>
                         </div>
                     </form>
@@ -60,11 +60,11 @@
             <div class="box-header">
               <form class="form-inline" id="queryForm">
                 <div class="form-group searchArea margin-r-5 margin-top-5">
-                    <label>设备编号：</label>
-                    <input type="text" name="number" class="form-control inputText" id="number" placeholder="请输入资产编号">
+                    <label>Area Units：</label>
+                    <input type="text" name="number" class="form-control inputText" id="number" placeholder="Please input Area unit">
                 </div>
                <div class="form-group searchArea margin-r-5 margin-top-5">
-                <label>设备类型：</label>
+                <label>Type：</label>
                 <select class="form-control inputText select2" name="equipment_type", id="equipment_type">
                     <option></option>
                     {% for type in equipment_types %}
@@ -73,11 +73,11 @@
                 </select>
               </div>
                 <div class="form-group searchArea margin-r-5 margin-top-5">
-                    <label>设备型号：</label>
+                    <label>Area SqKm：</label>
                     <input type="text" name="equipment_model" class="form-control inputText" id="equipment_model">
                 </div>
                 <div class="form-group searchArea margin-r-5 margin-top-5">
-                  <label>购买单位：</label>
+                  <label>Traditional Owner：</label>
                   <select class="form-control inputText select2" name="customer" id="customer">
                     <option></option>
                     {% for customer in customers %}
@@ -86,7 +86,7 @@
                   </select>
                 </div>
                 <button type="button" id="btnEquipmentSearch" class="btn btn-default">
-                    <i class="glyphicon glyphicon-search"></i>查询
+                    <i class="glyphicon glyphicon-search"></i>Search
                 </button>
             </form>
             </div>
@@ -96,14 +96,14 @@
                     <tr valign="middle">
                         <th><input type="checkbox" id="checkAll"></th>
                         <th>ID</th>
-                        <th>设备编号</th>
-                        <th>类型</th>
-                        <th>型号</th>
-                        <th>购买单位</th>
+                        <th>Area Units</th>
+                        <th>Type</th>
+                        <th>Area SqKm</th>
+                        <th>Traditional Owner</th>
                         <th>责任人</th>
-                        <th>购买日期</th>
-                        <th>质保日期</th>
-                        <th>操作</th>
+                        <th>Add time</th>
+                        <th>expiration date</th>
+                        <th>Operate</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -12,8 +12,11 @@ from django.db.models import Q
 from utils.mixin_utils import LoginRequiredMixin
 from rbac.models import Menu
 from system.models import SystemSetup
-from .models import Supplier, AssetType, Customer, EquipmentType
-from .forms import SupplierCreateForm, SupplierUpdateForm, AssetTypeForm, CustomerCreateForm, CustomerUpdateForm, \
+# from .models import Supplier, AssetType, Customer, EquipmentType
+from .models import  Customer, EquipmentType
+
+# from .forms import SupplierCreateForm, SupplierUpdateForm, AssetTypeForm, CustomerCreateForm, CustomerUpdateForm, \
+from .forms import  CustomerCreateForm, CustomerUpdateForm, \
     EquipmentTypeForm
 
 User = get_user_model()

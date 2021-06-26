@@ -5,7 +5,7 @@
 import xadmin
 from xadmin import views
 
-from .models import Supplier, AssetType, Customer
+from .models import  Customer
 
 
 
@@ -27,6 +27,6 @@ class CustomerAdmin(object):
     list_filter = ['id', 'unit', 'address', 'name', 'phone', 'belongs_to', 'status']
 
 
-xadmin.site.register(Supplier, SupplierAdmin)
-xadmin.site.register(AssetType, AssetTypeAdmin)
+# xadmin.site.register(Supplier, SupplierAdmin)
+# xadmin.site.register(AssetType, AssetTypeAdmin)
 xadmin.site.register(Customer, CustomerAdmin)
