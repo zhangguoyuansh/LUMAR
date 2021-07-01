@@ -47,7 +47,7 @@
                       <input type="radio" class="minimal" name="status"  value="False" {% ifequal supplier.status False %}checked{% endifequal %}>Disable
                     </label>
                 </div>
-                <label class="col-sm-2 control-label">负责人</label>
+                <label class="col-sm-2 control-label">Supervisor</label>
                   <div class="col-sm-3">
                     <select class="form-control" name="belongs_to">
                     <option value={{ supplier.belongs_to.id| default:request.user.id }}> {{ supplier.belongs_to.name | default:request.user.name }} </option>
@@ -68,8 +68,8 @@
 		</div>
 		<div class="box-footer ">
 			<div class="row span7 text-center ">
-              <button type="button" id="btnCancel" class="btn btn-default margin-right " >重置</button>
-              <button type="button" id="btnSave" class="btn btn-info margin-right " >保存</button>
+              <button type="button" id="btnCancel" class="btn btn-default margin-right " >Reset</button>
+              <button type="button" id="btnSave" class="btn btn-info margin-right " >Save</button>
 			</div>
 		</div>
 

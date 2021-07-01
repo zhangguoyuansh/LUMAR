@@ -40,7 +40,7 @@ urlpatterns = [
 
     url(r'^adm/$', AdmView.as_view(), name="adm-main"),
     url(r'^adm/bsm/', include(('adm.urls', 'adm-bsm'))),
-    url(r'^adm/equipment/', include(('adm.urls_equipment', 'adm-equipment'))),
+    url(r'^adm/land/', include(('adm.urls_equipment', 'adm-equipment'))),
     # url(r'^adm/asset/', include(('adm.urls_asset', 'adm-asset'))),
 
     url(r'^personal/$', personal_views.PersonalView.as_view(), name="personal"),
@@ -66,7 +66,7 @@ urlpatterns = [
     url(r'^personal/application_Icrt/upload', order.WorkOrderProjectUploadView.as_view(),
         name="personal-workorder-project-upload"),
     url(r'^personal/application_all/$', order.ApplicationView.as_view(), name="personal-application_all"),
-    url(r'^personal/document/$', order.WorkOrderDocumentView.as_view(), name="personal-document"),
-    url(r'^personal/document/list', order.WorkOrderDocumentListView.as_view(), name="personal-document-list"),
+    url(r'^personal/meeting/$', order.WorkOrderDocumentView.as_view(), name="personal-document"),
+    url(r'^personal/meeting/list', order.WorkOrderDocumentListView.as_view(), name="personal-document-list"),
 
 ]

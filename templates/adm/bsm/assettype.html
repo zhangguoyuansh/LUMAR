@@ -137,7 +137,7 @@ $(function() {
 	$("#btnCreate").click(function() {
 		layer.open({
 			type : 2,
-			title : '新增',
+			title : 'Create',
 			shadeClose : false,
 			maxmin : true,
 			area : [ '800px', '400px' ],
@@ -156,7 +156,7 @@ $(function() {
 	//批量删除
 	$("#btnDelete").click(function() {
 		if ($("input[name='checkList']:checked").length == 0){
-			layer.msg("请选择要删除的记录");
+			layer.msg("Please select to delete");
 			return ;
 		}
 
@@ -168,7 +168,7 @@ $(function() {
 
 		sId=arrId.join(',');
 
-		layer.alert('确定删除吗？', {
+		layer.alert('Are you sure to delete?', {
 			title:'提示'
 			,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
 			,time: 0 //不自动关闭
@@ -215,7 +215,7 @@ function doUpdate(id){
 
 //删除单个数据
 function doDelete(id){
-    layer.alert('确定删除吗？', {
+    layer.alert('Are you sure to delete?', {
         title:'提示'
         ,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
         ,time: 0 //不自动关闭

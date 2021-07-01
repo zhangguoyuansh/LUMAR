@@ -202,7 +202,7 @@ $(function() {
 	$("#btnCreate").click(function() {
 		var div=layer.open({
 			type : 2,
-			title : '新增',
+			title : 'Create',
 			shadeClose : false,
 			maxmin : true,
             area : [ '800px', '720px' ],
@@ -222,7 +222,7 @@ $(function() {
 	//批量删除
 	$("#btnDelete").click(function() {
 		if ($("input[name='checkList']:checked").length == 0){
-			layer.msg("请选择要删除的记录");
+			layer.msg("Please select the record to delete");
 			return ;
 		}
 
@@ -234,8 +234,8 @@ $(function() {
 
 		sId=arrId.join(',');
 
-		layer.alert('确定删除吗？', {
-			title:'提示'
+		layer.alert('Are your sure to delete？', {
+			title:'prompt'
 			,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
 			,time: 0 //不自动关闭
 			,btn: ['YES', 'NO']
@@ -248,11 +248,11 @@ $(function() {
 					cache: false,
 					success : function(msg) {
 						if (msg.result){
-							layer.alert("操作成功");
+							layer.alert("Operated successful");
 							oDataTable.ajax.reload();
 						}else{
 							//alert(msg.message);
-							layer.alert("操作失败");
+							layer.alert("Operated failed");
 						}
 						return ;
 					}
@@ -265,7 +265,7 @@ $(function() {
 	//批量启用
 	$("#btnEnable").click(function() {
 		if ($("input[name='checkList']:checked").length == 0){
-			layer.msg("请选择要启用的用户");
+			layer.msg("Please select the user to enable");
 			return ;
 		}
 
@@ -277,8 +277,8 @@ $(function() {
 
 		sId=arrId.join(',');
 
-		layer.alert('确定启用吗？', {
-			title:'提示'
+		layer.alert('Are you sure to enable？', {
+			title:'prompt'
 			,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
 			,time: 0 //不自动关闭
 			,btn: ['YES', 'NO']
@@ -291,11 +291,11 @@ $(function() {
 					cache: false,
 					success : function(msg) {
 						if (msg.result){
-							layer.alert("启用用户成功", {icon: 1});
+							layer.alert("User enabled successfully", {icon: 1});
 							oDataTable.ajax.reload();
 						}else{
 							//alert(msg.message);
-							layer.alert("启用用户失败", {icon: 5});
+							layer.alert("User enabled failed", {icon: 5});
 						}
 						return ;
 					}
@@ -307,7 +307,7 @@ $(function() {
 	//批量禁用
 	$("#btnDisable").click(function() {
 		if ($("input[name='checkList']:checked").length == 0){
-			layer.msg("请选择要禁用的用户");
+			layer.msg("Please select the user to disable");
 			return ;
 		}
 
@@ -319,8 +319,8 @@ $(function() {
 
 		sId=arrId.join(',');
 
-		layer.alert('确定禁用吗？', {
-			title:'提示'
+		layer.alert('Are you sure to disable？', {
+			title:'prompt'
 			,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
 			,time: 0 //不自动关闭
 			,btn: ['YES', 'NO']
@@ -333,11 +333,11 @@ $(function() {
 					cache: false,
 					success : function(msg) {
 						if (msg.result){
-							layer.alert("禁用用户成功", {icon: 1});
+							layer.alert("Disabled user successfully", {icon: 1});
 							oDataTable.ajax.reload();
 						}else{
 							//alert(msg.message);
-							layer.alert("禁用用户失败", {icon: 5});
+							layer.alert("Disable user failed", {icon: 5});
 						}
 						return ;
 					}
@@ -357,7 +357,7 @@ $(function() {
 function doUpdate(id){
 	var div=layer.open({
 		type : 2,
-		title : '编辑',
+		title : 'Edit',
 		shadeClose : false,
     	maxmin : true,
 		area : [ '800px', '650px' ],
@@ -373,7 +373,7 @@ function doUpdate(id){
 function doChangepasswd(id){
 	layer.open({
 		type : 2,
-		title : '编辑',
+		title : 'Edit',
 		shadeClose : false,
     	maxmin : true,
 		area : [ '850px', '600px' ],
@@ -386,8 +386,8 @@ function doChangepasswd(id){
 
 //删除单个用户
 function doDelete(id){
-    layer.alert('确定删除吗？', {
-        title:'提示'
+    layer.alert('Are you sure to delete？', {
+        title:'prompt'
         ,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
         ,time: 0 //不自动关闭
         ,btn: ['YES', 'NO']

@@ -9,7 +9,7 @@ User = get_user_model()
 
 class ExplorationApplication(models.Model):
     type_choices = (('0', 'Agent'), ('1', 'Applicant'))
-    status_choices = (('0', '工单已退回'), ('1', '新建-保存'), ('2', '提交-等待审批'), ('3', '已审批-等待执行'), ('4', '已执行-等待确认'), ('5', '工单已完成'))
+    status_choices = (('0', 'Application returned'), ('1', 'Create-save'), ('2', 'Submitted-waiting for assess'), ('3', 'Assessed-waiting for receipt'), ('4', 'Receipted-waiting for comfirm'), ('5', 'Application finished'))
     number = models.CharField(max_length=10, verbose_name='工单号')
     title = models.CharField(max_length=50, verbose_name='标题')
     type = models.CharField(max_length=10, choices=type_choices, default='0', verbose_name='工单类型')
@@ -41,7 +41,7 @@ class ExplorationApplication(models.Model):
 
 
 class ExplorationApplicationRecord(models.Model):
-    type_choices = (('0', '退回'), ('1', "派发"), ('2', "执行"), ('3', "确认"))
+    type_choices = (('0', 'Returned'), ('1', "Assessed"), ('2', "Receipted"), ('3', "Confirmed"))
     name = models.ForeignKey(User, verbose_name=u"记录人",on_delete=models.CASCADE)
     work_order = models.ForeignKey(ExplorationApplication, verbose_name=u"工单信息",on_delete=models.CASCADE)
     record_type = models.CharField(max_length=10, choices=type_choices, verbose_name=u"记录类型")

@@ -47,9 +47,9 @@
                     <tr valign="middle">
                         <th><input type="checkbox" id="checkAll"></th>
                         <th>ID</th>
-                        <th>设备类型</th>
-                        <th>备注</th>
-                        <th>操作</th>
+                        <th>Land Type</th>
+                        <th>Note</th>
+                        <th>Operate</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -160,7 +160,7 @@ $(function() {
 	//批量删除
 	$("#btnDelete").click(function() {
 		if ($("input[name='checkList']:checked").length == 0){
-			layer.msg("请选择要删除的记录");
+			layer.msg("Please select to delete");
 			return ;
 		}
 
@@ -172,8 +172,8 @@ $(function() {
 
 		sId=arrId.join(',');
 
-		layer.alert('确定删除吗？', {
-			title:'提示'
+		layer.alert('Are you sure to delete?', {
+			title:'prompt'
 			,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
 			,time: 0 //不自动关闭
 			,btn: ['YES', 'NO']
@@ -219,8 +219,8 @@ function doUpdate(id){
 
 //删除单个数据
 function doDelete(id){
-    layer.alert('确定删除吗？', {
-        title:'提示'
+    layer.alert('Are you sure to delete?', {
+        title:'prompt'
         ,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
         ,time: 0 //不自动关闭
         ,btn: ['YES', 'NO']

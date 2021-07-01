@@ -76,7 +76,7 @@ class ApplicationCreateView(LoginRequiredMixin, View):
         if request.user.department_id == 9:  # 新建工单时销售部门只能选择自己的用户信息
             filters['belongs_to_id'] = request.user.id
         customer = Customer.objects.values().filter(**filters)
-        role = get_object_or_404(Role, title='审批')
+        role = get_object_or_404(Role, title='Reviewer')
         land = Equipment.objects.values().filter(**filters)
 
         approver = role.userprofile_set.all()
@@ -128,7 +128,7 @@ class ApplicationDetailView(LoginRequiredMixin, View):
             work_order = get_object_or_404(ExplorationApplication, pk=request.GET['id'])
             work_order_record = work_order.explorationapplicationrecord_set.all().order_by('add_time')
             try:
-                role = Role.objects.get(title="管理")
+                role = Role.objects.get(title="Manager")
                 admin_user_ids = role.userprofile_set.values('id')
                 for admin_user_id in admin_user_ids:
                     admin_user_list.append(admin_user_id['id'])
@@ -172,7 +172,7 @@ class ApplicationUpdateView(LoginRequiredMixin, View):
         if request.user.department_id == 9:
             filters['belongs_to_id'] = request.user.id
         customer = Customer.objects.values().filter(**filters)
-        role = get_object_or_404(Role, title='审批')
+        role = get_object_or_404(Role, title='Reviewer')
         land = Equipment.objects.values().filter(**filters)
 
         approver = role.userprofile_set.all()

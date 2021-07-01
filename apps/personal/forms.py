@@ -29,11 +29,11 @@ class WorkOrderCreateForm(forms.ModelForm):
         model = ExplorationApplication
         fields = '__all__'
         error_messages = {
-            "title": {"required": "请输入工单标题"},
-            "type": {"required": "请选择工单类型"},
-            "status": {"required": "请选择工单状态"},
-            "do_time": {"required": "请输入工单安排时间"},
-            "content": {"required": "请输入工单内容"},
+            "title": {"required": "Please enter the application title"},
+            "type": {"required": "Please enter the application type"},
+            "status": {"required": "Please enter the application status"},
+            "do_time": {"required": "Please enter the desired meeting time"},
+            "content": {"required": "Please enter application information"},
             "customer": {"required": "Please choose Traditional Owner"},
             "land": {"required": "Please choose land"},
         }
@@ -43,9 +43,9 @@ class WorkOrderCreateForm(forms.ModelForm):
         approver = cleaned_data.get("approver", "")
         number = cleaned_data.get("number")
         if not approver:
-            raise forms.ValidationError("请选择工单审批人")
+            raise forms.ValidationError("Please select approver")
         if ExplorationApplication.objects.filter(number=number).count():
-            raise forms.ValidationError("工单编号已存在")
+            raise forms.ValidationError("Application ID already exists")
 
 
 class WorkOrderUpdateForm(forms.ModelForm):
@@ -66,7 +66,7 @@ class WorkOrderUpdateForm(forms.ModelForm):
         cleaned_data = super(WorkOrderUpdateForm, self).clean()
         approver = cleaned_data.get("approver", "")
         if not approver:
-            raise forms.ValidationError("请选择工单审批人")
+            raise forms.ValidationError("Please select approver")
 
 
 class WorkOrderRecordForm(forms.ModelForm):

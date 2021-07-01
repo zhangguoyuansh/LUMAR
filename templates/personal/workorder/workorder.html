@@ -150,35 +150,36 @@
 											return "Agent";
 										}if(data==1){
 											return "Applicant";
-										}if(data==2) {
-                                            return "远程支持";
-                                        }if(data==3) {
-                                            return "售前支持";
-                                        }
+										}
+										{#if(data==2) {#}
+                                        {#    return "远程支持";#}
+                                        {#}if(data==3) {#}
+                                        {#    return "售前支持";#}
+                                        {#}#}
 									}
 								},
                                 {
 									data : "status",
                                     render : function(data, type, row, meta) {
 										if (data==0){
-                                            var ret="<button class='btn btn-danger btn-xs'>工单已退回</button>";
+                                            var ret="<button class='btn btn-danger btn-xs'>Application returned</button>";
 											return ret;
 										}if(data==1){
-											var ret="<button class='btn btn-info btn-xs'>新建-保存</button>";
+											var ret="<button class='btn btn-info btn-xs'>Create-save</button>";
 											return ret;
 
 										}if(data==2) {
-                                            var ret="<button class='btn btn-warning btn-xs'>提交-等待审批</button>";
+                                            var ret="<button class='btn btn-warning btn-xs'>Submitted-waiting for assess</button>";
 											return ret;
 
                                         }if(data==3) {
-                                            var ret="<button class='btn btn-success btn-xs'>已审批-等待执行</button>";
+                                            var ret="<button class='btn btn-success btn-xs'>Assessed-waiting for receipt</button>";
 											return ret;
                                         }if(data==4) {
-                                            var ret="<button class='btn btn-primary btn-xs'>已执行-等待确认</button>";
+                                            var ret="<button class='btn btn-primary btn-xs'>Receipted-waiting for comfirm</button>";
 											return ret;
                                         }if(data==5) {
-                                            var ret="<button class='btn btn-default btn-xs bg-gray'>工单已完成</button>";
+                                            var ret="<button class='btn btn-default btn-xs bg-gray'>Application finished</button>";
 											return ret;
                                         }
 									}
@@ -195,11 +196,11 @@
 									data : "id",
 									bSortable : "false",
 									render : function(data, type, row, meta) {
-										var ret="<button title='工单详情' onclick='doDetail("
+										var ret="<button title='Detail' onclick='doDetail("
 										+ data + ")'><i class='glyphicon glyphicon-list-alt'></i></button>";
-                                        ret=ret+"<button title='编辑' onclick='doUpdate("
+                                        ret=ret+"<button title='Edit' onclick='doUpdate("
 										+ data + ")'><i class='glyphicon glyphicon-pencil'></i></button>";
-										 ret=ret+"<button title='删除' onclick='doDelete("
+										 ret=ret+"<button title='Delete' onclick='doDelete("
                                             + data + ")'><i class='glyphicon glyphicon-trash'></i></button>";
 										return ret;
 									}
@@ -227,7 +228,7 @@
 	$("#btnCreate").click(function() {
 		var div=layer.open({
 			type : 2,
-			title : '新增工单',
+			title : 'Create application',
 			shadeClose : false,
 			maxmin : true,
 			area : [ '800px', '600px' ],
@@ -247,7 +248,7 @@
 	//批量删除
 	$("#btnDelete").click(function() {
 		if ($("input[name='checkList']:checked").length == 0){
-			layer.msg("请选择要删除的记录");
+			layer.msg("Please select to delete");
 			return ;
 		}
 
@@ -259,8 +260,8 @@
 
 		sId=arrId.join(',');
 
-		layer.alert('确定删除吗？', {
-			title:'提示'
+		layer.alert('Are you sure to delete?', {
+			title:'prompt'
 			,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
 			,time: 0 //不自动关闭
 			,btn: ['YES', 'NO']
@@ -296,7 +297,7 @@ function doDetail(id){
 function doUpdate(id){
 	var div=layer.open({
 		type : 2,
-		title : '修改工单',
+		title : 'Modify application',
 		shadeClose : false,
     	maxmin : true,
 		area : [ '800px', '600px' ],
@@ -311,8 +312,8 @@ function doUpdate(id){
 }
 
 function doDelete(id){
-    layer.alert('确定删除吗？', {
-        title:'提示'
+    layer.alert('Are you sure to delete?', {
+        title:'prompt'
         ,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
         ,time: 0 //不自动关闭
         ,btn: ['YES', 'NO']

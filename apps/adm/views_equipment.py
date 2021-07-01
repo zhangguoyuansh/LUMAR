@@ -36,7 +36,7 @@ class EquipmentView(LoginRequiredMixin, View):
         ret['equipment_types'] = equipment_types
         ret['customers'] = customers
 
-        return render(request, 'adm/equipment/equipment.html', ret)
+        return render(request, 'adm/land/equipment.html', ret)
 
 
 class EquipmentListView(LoginRequiredMixin, View):
@@ -99,7 +99,7 @@ class EquipmentCreateView(LoginRequiredMixin, View):
         role_list = [role['title'] for role in roles if role['title'] == '核算']
         if role_list:
             ret['role_list'] = role_list[0]
-        return render(request, 'adm/equipment/equipment_create.html', ret)
+        return render(request, 'adm/land/equipment_create.html', ret)
 
     def post(self, request):
         res = {}
@@ -179,7 +179,7 @@ class EquipmentDetailView(LoginRequiredMixin, View):
 
             services.append(service_info_dict)
         ret['services'] = services
-        return render(request, 'adm/equipment/equipment_detail.html', ret)
+        return render(request, 'adm/land/equipment_detail.html', ret)
 
 
 class EquipmentDeleteView(LoginRequiredMixin, View):
@@ -203,7 +203,7 @@ class ServiceInfoUpdateView(LoginRequiredMixin, View):
         if 'id' in request.GET and request.GET['id']:
             equipment_id = request.GET['id']
             ret['equipment_id'] = equipment_id
-        return render(request, 'adm/equipment/service_info_update.html', ret)
+        return render(request, 'adm/land/service_info_update.html', ret)
 
     def post(self, request):
         res = dict(result=False)

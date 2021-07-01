@@ -8,7 +8,7 @@ from adm import views_equipment
 
 urlpatterns = [
 
-    url(r'^$', views_equipment.EquipmentView.as_view(), name='equipment'),
+    url(r'^$', views_equipment.EquipmentView.as_view(), name='land'),
     url(r'^list', views_equipment.EquipmentListView.as_view(), name="list"),
     url(r'^create', views_equipment.EquipmentCreateView.as_view(), name="create"),
     url(r'^detail', views_equipment.EquipmentDetailView.as_view(), name="equipment-detail"),

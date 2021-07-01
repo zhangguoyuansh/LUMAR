@@ -100,7 +100,7 @@
                         <th>Type</th>
                         <th>Area SqKm</th>
                         <th>Traditional Owner</th>
-                        <th>责任人</th>
+                        <th>Supervisor</th>
                         <th>Add time</th>
                         <th>expiration date</th>
                         <th>Operate</th>
@@ -226,7 +226,7 @@ $(function() {
 	$("#btnCreate").click(function() {
 		var div=layer.open({
 			type : 2,
-			title : '添加设备信息',
+			title : 'Add land info',
 			shadeClose : false,
 			maxmin : true,
 			area : [ '800px', '500px' ],
@@ -247,7 +247,7 @@ $(function() {
 	//批量删除
 	$("#btnDelete").click(function() {
 		if ($("input[name='checkList']:checked").length == 0){
-			layer.msg("请选择要删除的记录");
+			layer.msg("Please select to delete");
 			return ;
 		}
 
@@ -259,8 +259,8 @@ $(function() {
 
 		sId=arrId.join(',');
 
-		layer.alert('确定删除吗？', {
-			title:'提示'
+		layer.alert('Are you sure to delete?', {
+			title:'prompt'
 			,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
 			,time: 0 //不自动关闭
 			,btn: ['YES', 'NO']
@@ -290,7 +290,7 @@ $(function() {
 });
 
 function doDetail(id){
-    window.location.href="/adm/equipment/detail?id="+id;
+    window.location.href="/adm/land/detail?id="+id;
 }
 
 function doUpdate(id){
@@ -312,8 +312,8 @@ function doUpdate(id){
 
 //删除单个数据
 function doDelete(id){
-    layer.alert('确定删除吗？', {
-        title:'提示'
+    layer.alert('Are you sure to delete?', {
+        title:'prompt'
         ,icon: 3 //0:感叹号 1：对号 2：差号 3：问号 4：小锁 5：哭脸 6：笑脸
         ,time: 0 //不自动关闭
         ,btn: ['YES', 'NO']

@@ -68,9 +68,9 @@
                 <label class="col-sm-2 control-label">Area Units</label>
                 <div class="col-sm-3">
                   <select class="form-control select2" style="width:100%;" name="land">
-                  <option value="{{ work_order.land_id }}">{{ work_order.land.equipment_model }}</option>
+                  <option value="{{ work_order.land_id }}">{{ work_order.land.number }}</option>
                   {% for la in land %}
-                  <option value="{{ la.id}}">{{ la.equipment_model }}</option>
+                  <option value="{{ la.id}}">{{ la.number }}</option>
                   {% endfor %}
                  </select>
                  </div>

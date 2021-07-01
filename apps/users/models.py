@@ -38,7 +38,7 @@ class Structure(models.Model):
     """
     组织架构
     """
-    type_choices = (("firm", "firm"), ("department", "department"))
+    type_choices = (("firm", "Extra-NLC"), ("department", "Intra-NLC"))
     title = models.CharField(max_length=60, verbose_name="title")
     type = models.CharField(max_length=20, choices=type_choices, default="department", verbose_name="type")
     parent = models.ForeignKey("self", null=True, blank=True, verbose_name="parent",on_delete=models.CASCADE)

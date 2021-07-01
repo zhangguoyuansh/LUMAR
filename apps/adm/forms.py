@@ -90,7 +90,7 @@ class EquipmentCreateForm(forms.ModelForm):
             "equipment_model": {"required": "请输入设备型号"},
             "buy_date": {"required": "请输入购买日期"},
             "warranty_date": {"required": "请输入质保日期"},
-            "supplier": {"required": "请选择分销商"}
+            # "supplier": {"required": "请选择分销商"}
         }
 
     def clean(self):
@@ -112,7 +112,7 @@ class EquipmentUpdateForm(forms.ModelForm):
             "equipment_model": {"required": "请输入设备型号"},
             "buy_date": {"required": "请输入购买日期"},
             "warranty_date": {"required": "请输入质保日期"},
-            "supplier": {"required": "请选择分销商"}
+            # "supplier": {"required": "请选择分销商"}
         }
 
 

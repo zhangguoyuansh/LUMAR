@@ -21,150 +21,150 @@ from .forms import  CustomerCreateForm, CustomerUpdateForm, \
 
 User = get_user_model()
 
-class SupplierView(LoginRequiredMixin, View):
-    """
-    供应商管理
-    """
-    def get(self, request):
-        ret = Menu.getMenuByRequestUrl(url=request.path_info)
-        ret.update(SystemSetup.getSystemSetupLastData())
-        return render(request, 'adm/bsm/supplier.html', ret)
-
-
-class SupplierListView(LoginRequiredMixin, View):
-    """
-    获取分销商列表
-    """
-    def get(self, request):
-        filters = dict()
-        if request.user.department_id == 9:
-            filters['belongs_to_id'] = request.user.id
-        ret = dict(data=list(Supplier.objects.values().filter(**filters)))
-        return HttpResponse(json.dumps(ret, cls=DjangoJSONEncoder), content_type='application/json')
-
-
-class SupplierDetailView(LoginRequiredMixin, View):
-    """
-    分销商详情页：查看、修改、新建数据
-    """
-    def get(self, request):
-        ret = dict()
-        if 'id' in request.GET and request.GET['id']:
-            supplier = get_object_or_404(Supplier, pk=request.GET.get('id'))
-            ret['supplier'] = supplier
-        users = User.objects.exclude(id=request.user.id)
-        ret['users'] = users
-        return render(request, 'adm/bsm/supplier_detail.html', ret)
-
-    def post(self, request):
-        # res = dict(result=False)
-        # if 'id' in request.POST and request.POST['id']:
-        #     supplier = get_object_or_404(Supplier, pk=request.POST.get('id'))
-        # else:
-        #     supplier = Supplier()
-        # supplier_form = SupplierForm(request.POST, instance=supplier)
-        # if supplier_form.is_valid():
-        #     supplier_form.save()
-        #     res['result'] = True
-        # return HttpResponse(json.dumps(res), content_type='application/json')
-        res = {}
-        if 'id' in request.POST and request.POST['id']:
-            supplier = get_object_or_404(Supplier, pk=request.POST.get('id'))
-            supplier_update_form = SupplierUpdateForm(request.POST, instance=supplier)
-            if supplier_update_form.is_valid():
-                supplier_update_form.save()
-                res['status'] = 'success'
-            else:
-                pattern = '<li>.*?<ul class=.*?><li>(.*?)</li>'
-                errors = str(supplier_update_form.errors)
-                supplier_form_errors = re.findall(pattern, errors)
-                res = {
-                    'status': 'fail',
-                    'supplier_form_errors': supplier_form_errors[0]
-                }
-
-        else:
-            supplier = Supplier()
-            supplier_create_form = SupplierCreateForm(request.POST, instance=supplier)
-            if supplier_create_form.is_valid():
-                supplier_create_form.save()
-                res['status'] = 'success'
-            else:
-                pattern = '<li>.*?<ul class=.*?><li>(.*?)</li>'
-                errors = str(supplier_create_form.errors)
-                supplier_form_errors = re.findall(pattern, errors)
-                res = {
-                    'status': 'fail',
-                    'supplier_form_errors': supplier_form_errors[0]
-                }
-        return HttpResponse(json.dumps(res), content_type='application/json')
-
-
-
-class SupplierDeleteView(LoginRequiredMixin, View):
-
-    def post(self, request):
-        ret = dict(result=False)
-        if 'id' in request.POST and request.POST['id']:
-            id_list = map(int, request.POST.get('id').split(','))
-            Supplier.objects.filter(id__in=id_list).delete()
-            ret['result'] = True
-        return HttpResponse(json.dumps(ret), content_type='application/json')
-
-
-class AssetTypeView(LoginRequiredMixin, View):
-    """
-    资产类型
-    """
-    def get(self, request):
-        ret = Menu.getMenuByRequestUrl(url=request.path_info)
-        ret.update(SystemSetup.getSystemSetupLastData())
-        return render(request, 'adm/bsm/assettype.html', ret)
-
-
-class AssetTypeListView(LoginRequiredMixin, View):
-    """
-    资产类型列表
-    """
-    def get(self, request):
-        fields = ['id', 'name', 'desc']
-        ret = dict(data=list(AssetType.objects.values(*fields)))
-        return HttpResponse(json.dumps(ret), content_type='application/json')
-
-
-class AssetTypeDetailView(LoginRequiredMixin, View):
-    """
-    资产类型：查看、修改、新建数据
-    """
-    def get(self, request):
-        ret=dict()
-        if 'id' in request.GET and request.GET['id']:
-            assettype = get_object_or_404(AssetType, pk=request.GET.get('id'))
-            ret['assettype'] = assettype
-        return render(request, 'adm/bsm/assettype_detail.html', ret)
-
-    def post(self, request):
-        res = dict(result=False)
-        if 'id' in request.POST and request.POST['id']:
-            assettype = get_object_or_404(AssetType, pk=request.POST.get('id'))
-        else:
-            assettype = AssetType()
-        assettype_form = AssetTypeForm(request.POST, instance=assettype)
-        if assettype_form.is_valid():
-            assettype_form.save()
-            res['result'] = True
-        return HttpResponse(json.dumps(res), content_type='application/json')
-
-
-class AssetTypeDeleteView(LoginRequiredMixin, View):
-
-    def post(self, request):
-        ret = dict(result=False)
-        if 'id' in request.POST and request.POST['id']:
-            id_list = map(int, request.POST.get('id').split(','))
-            AssetType.objects.filter(id__in=id_list).delete()
-            ret['result'] = True
-        return HttpResponse(json.dumps(ret), content_type='application/json')
+# class SupplierView(LoginRequiredMixin, View):
+#     """
+#     供应商管理
+#     """
+#     def get(self, request):
+#         ret = Menu.getMenuByRequestUrl(url=request.path_info)
+#         ret.update(SystemSetup.getSystemSetupLastData())
+#         return render(request, 'adm/bsm/supplier.html', ret)
+#
+#
+# class SupplierListView(LoginRequiredMixin, View):
+#     """
+#     获取分销商列表
+#     """
+#     def get(self, request):
+#         filters = dict()
+#         if request.user.department_id == 9:
+#             filters['belongs_to_id'] = request.user.id
+#         ret = dict(data=list(Supplier.objects.values().filter(**filters)))
+#         return HttpResponse(json.dumps(ret, cls=DjangoJSONEncoder), content_type='application/json')
+#
+#
+# class SupplierDetailView(LoginRequiredMixin, View):
+#     """
+#     分销商详情页：查看、修改、新建数据
+#     """
+#     def get(self, request):
+#         ret = dict()
+#         if 'id' in request.GET and request.GET['id']:
+#             supplier = get_object_or_404(Supplier, pk=request.GET.get('id'))
+#             ret['supplier'] = supplier
+#         users = User.objects.exclude(id=request.user.id)
+#         ret['users'] = users
+#         return render(request, 'adm/bsm/supplier_detail.html', ret)
+#
+#     def post(self, request):
+#         # res = dict(result=False)
+#         # if 'id' in request.POST and request.POST['id']:
+#         #     supplier = get_object_or_404(Supplier, pk=request.POST.get('id'))
+#         # else:
+#         #     supplier = Supplier()
+#         # supplier_form = SupplierForm(request.POST, instance=supplier)
+#         # if supplier_form.is_valid():
+#         #     supplier_form.save()
+#         #     res['result'] = True
+#         # return HttpResponse(json.dumps(res), content_type='application/json')
+#         res = {}
+#         if 'id' in request.POST and request.POST['id']:
+#             supplier = get_object_or_404(Supplier, pk=request.POST.get('id'))
+#             supplier_update_form = SupplierUpdateForm(request.POST, instance=supplier)
+#             if supplier_update_form.is_valid():
+#                 supplier_update_form.save()
+#                 res['status'] = 'success'
+#             else:
+#                 pattern = '<li>.*?<ul class=.*?><li>(.*?)</li>'
+#                 errors = str(supplier_update_form.errors)
+#                 supplier_form_errors = re.findall(pattern, errors)
+#                 res = {
+#                     'status': 'fail',
+#                     'supplier_form_errors': supplier_form_errors[0]
+#                 }
+#
+#         else:
+#             supplier = Supplier()
+#             supplier_create_form = SupplierCreateForm(request.POST, instance=supplier)
+#             if supplier_create_form.is_valid():
+#                 supplier_create_form.save()
+#                 res['status'] = 'success'
+#             else:
+#                 pattern = '<li>.*?<ul class=.*?><li>(.*?)</li>'
+#                 errors = str(supplier_create_form.errors)
+#                 supplier_form_errors = re.findall(pattern, errors)
+#                 res = {
+#                     'status': 'fail',
+#                     'supplier_form_errors': supplier_form_errors[0]
+#                 }
+#         return HttpResponse(json.dumps(res), content_type='application/json')
+#
+#
+#
+# class SupplierDeleteView(LoginRequiredMixin, View):
+#
+#     def post(self, request):
+#         ret = dict(result=False)
+#         if 'id' in request.POST and request.POST['id']:
+#             id_list = map(int, request.POST.get('id').split(','))
+#             Supplier.objects.filter(id__in=id_list).delete()
+#             ret['result'] = True
+#         return HttpResponse(json.dumps(ret), content_type='application/json')
+#
+#
+# class AssetTypeView(LoginRequiredMixin, View):
+#     """
+#     资产类型
+#     """
+#     def get(self, request):
+#         ret = Menu.getMenuByRequestUrl(url=request.path_info)
+#         ret.update(SystemSetup.getSystemSetupLastData())
+#         return render(request, 'adm/bsm/assettype.html', ret)
+#
+#
+# class AssetTypeListView(LoginRequiredMixin, View):
+#     """
+#     资产类型列表
+#     """
+#     def get(self, request):
+#         fields = ['id', 'name', 'desc']
+#         ret = dict(data=list(AssetType.objects.values(*fields)))
+#         return HttpResponse(json.dumps(ret), content_type='application/json')
+#
+#
+# class AssetTypeDetailView(LoginRequiredMixin, View):
+#     """
+#     资产类型：查看、修改、新建数据
+#     """
+#     def get(self, request):
+#         ret=dict()
+#         if 'id' in request.GET and request.GET['id']:
+#             assettype = get_object_or_404(AssetType, pk=request.GET.get('id'))
+#             ret['assettype'] = assettype
+#         return render(request, 'adm/bsm/assettype_detail.html', ret)
+#
+#     def post(self, request):
+#         res = dict(result=False)
+#         if 'id' in request.POST and request.POST['id']:
+#             assettype = get_object_or_404(AssetType, pk=request.POST.get('id'))
+#         else:
+#             assettype = AssetType()
+#         assettype_form = AssetTypeForm(request.POST, instance=assettype)
+#         if assettype_form.is_valid():
+#             assettype_form.save()
+#             res['result'] = True
+#         return HttpResponse(json.dumps(res), content_type='application/json')
+#
+#
+# class AssetTypeDeleteView(LoginRequiredMixin, View):
+#
+#     def post(self, request):
+#         ret = dict(result=False)
+#         if 'id' in request.POST and request.POST['id']:
+#             id_list = map(int, request.POST.get('id').split(','))
+#             AssetType.objects.filter(id__in=id_list).delete()
+#             ret['result'] = True
+#         return HttpResponse(json.dumps(ret), content_type='application/json')
 
 
 class CustomerView(LoginRequiredMixin, View):
